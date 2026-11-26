@@ -1,0 +1,3084 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OficiosAR — Directorio Verificado y Guía Barrial Integral (Zona Norte y CABA)</title>
+  <meta name="description" content="Encontrá plomeros, electricistas, gasistas matriculados, talleres mecánicos, gimnasios y comercios de cercanía con antecedentes verificados en San Isidro, Vicente López y CABA." />
+
+  <!-- META TAGS PARA PWA / APP EN CELULARES -->
+  <meta name="theme-color" content="#0F4C81" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="OficiosAR" />
+  <meta name="application-name" content="OficiosAR" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#0F4C81',
+              blueDark: '#0A3459',
+              blueLight: '#EEF5FC',
+              pink: '#E5004B',
+              pinkHover: '#C2003F',
+              teal: '#0D7A5F',
+              whatsapp: '#25D366',
+              whatsappDark: '#1DA851',
+              gold: '#D97706',
+              goldBg: '#FEF3C7',
+            }
+          },
+          boxShadow: {
+            'subtle': '0 2px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02)',
+            'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02)',
+            'card-hover': '0 20px 30px -10px rgba(15, 76, 129, 0.12), 0 8px 15px -4px rgba(15, 23, 42, 0.04)',
+            'glow': '0 0 25px -5px rgba(229, 0, 75, 0.3)',
+            'gold-glow': '0 0 25px -5px rgba(217, 119, 6, 0.3)',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @keyframes softPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(0.92); } }
+    .pulse-dot { animation: softPulse 1.8s infinite ease-in-out; }
+    
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.22); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.22); }
+      70% { transform: scale(1); }
+    }
+    .heart-pulse {
+      animation: heartBeat 1.4s infinite ease-in-out;
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    @keyframes favPop {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.45); }
+      100% { transform: scale(1); }
+    }
+    .fav-pop { animation: favPop 0.35s ease; display: inline-block; transform-origin: center; }
+  </style>
+</head>
+<body class="bg-slate-50/80 text-slate-800 antialiased selection:bg-brand-blue selection:text-white font-sans min-h-screen flex flex-col">
+
+  <!-- TOP BANNER MONETIZADO Y VERIFICACIÓN -->
+  <div id="topBanner" class="bg-gradient-to-r from-slate-900 via-brand-blueDark to-slate-900 text-white text-xs sm:text-sm py-2.5 px-4 relative shadow-inner z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2.5 pr-8 text-center font-medium">
+      <span class="inline-flex items-center gap-1.5 bg-amber-400/20 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-amber-300 border border-amber-400/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 pulse-dot"></span> Verificación 100% Obligatoria
+      </span>
+      <span class="hidden sm:inline">¿Ofrecés oficios o tenés un local en San Isidro, Vicente López o CABA?</span>
+      <button type="button" onclick="openProModal()" class="font-bold text-amber-300 underline underline-offset-4 hover:text-white transition">
+        Iniciar Postulación Verificada →
+      </button>
+    </div>
+    <button type="button" onclick="document.getElementById('topBanner').remove()" aria-label="Cerrar aviso" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- NAVBAR STICKY CON BOTÓN DE CORAZÓN PULSANTE -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-2.5 shrink-0 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-blue to-blue-900 flex items-center justify-center text-white font-display font-extrabold text-xl shadow-md group-hover:scale-105 transition-transform duration-200">O</div>
+        <span class="font-display font-extrabold text-2xl tracking-tight text-slate-900">oficios<span class="text-brand-pink">AR</span></span>
+      </a>
+
+      <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600">
+        <a href="#directorio" class="hover:text-brand-blue transition-colors py-1">Directorio</a>
+        <button type="button" onclick="openAllTradesModal()" class="hover:text-brand-blue transition-colors py-1 text-left">Catálogo de Oficios</button>
+        <a href="#planes-profesionales" class="hover:text-brand-blue transition-colors py-1">Planes Pro</a>
+        <a href="#comercios-destacados" class="hover:text-brand-blue transition-colors py-1">Comercios & Sponsors</a>
+        <button type="button" onclick="openDonateModal()" class="inline-flex items-center gap-1.5 text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-3.5 py-1.5 rounded-full transition text-xs font-extrabold shadow-xs group">
+          <svg class="w-4 h-4 text-rose-500 fill-current heart-pulse" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>Apoyar Proyecto</span>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" onclick="openDonateModal()" class="md:hidden inline-flex items-center gap-1 text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2.5 py-1.5 rounded-full text-xs font-bold">
+          <svg class="w-3.5 h-3.5 text-rose-500 fill-current heart-pulse" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span class="sr-only">Apoyar</span>
+        </button>
+        <button type="button" id="installAppNavBtn" onclick="openPwaModal()" class="hidden lg:inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-xl border border-blue-200/80 transition">
+          📱 Instalar App
+        </button>
+        <button type="button" onclick="openSupportModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Soporte
+        </button>
+        <button type="button" onclick="openProModal()" class="inline-flex items-center justify-center bg-brand-pink hover:bg-brand-pinkHover text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2.5 rounded-full shadow-md shadow-brand-pink/20 hover:shadow-lg transition duration-200">
+          Postulación Verificada
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO CON BUSCADOR PRINCIPAL -->
+  <section class="relative bg-gradient-to-b from-slate-950 via-brand-blueDark to-brand-blue text-white overflow-hidden py-14 sm:py-20 lg:py-24">
+    <div class="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none"></div>
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-brand-pink/25 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-blue-100 text-xs sm:text-sm font-medium px-4 py-1.5 rounded-full mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        San Isidro · Vicente López · Los 48 Barrios de Capital Federal (CABA)
+      </div>
+
+      <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.15] max-w-4xl mx-auto">
+        Busca los mejores profesionales en tu zona
+      </h1>
+      <p class="mt-4 sm:mt-6 text-base sm:text-xl text-blue-100/90 max-w-2xl mx-auto font-normal leading-relaxed">
+        Plomeros, gasistas matriculados, talleres mecánicos, ferreterías y gimnasios en tu barrio. Contacto directo por WhatsApp sin comisiones ni intermediarios.
+      </p>
+
+      <!-- Buscador principal -->
+      <form id="heroSearchForm" class="mt-8 sm:mt-10 max-w-3xl mx-auto bg-white p-2 rounded-2xl sm:rounded-full shadow-2xl shadow-slate-950/40 border border-white/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
+        <div class="flex items-center flex-1 pl-4 pr-2 py-1">
+          <svg class="w-6 h-6 text-slate-400 shrink-0 mr-3" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input id="heroSearchInput" type="text" placeholder="Ej: Gasista matriculado, Taller mecánico, Belgrano, Martínez, gomería..." class="w-full py-2.5 sm:py-3.5 text-slate-900 placeholder-slate-400 text-base sm:text-lg focus:outline-none bg-transparent font-medium" />
+        </div>
+        <button type="submit" class="bg-brand-pink hover:bg-brand-pinkHover text-white font-bold text-base px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-full transition duration-200 shadow-lg shadow-brand-pink/30 shrink-0 flex items-center justify-center gap-2">
+          <span>Buscar</span>
+        </button>
+      </form>
+
+      <!-- Métricas -->
+      <div class="mt-10 sm:mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto pt-8 border-t border-white/15">
+        <div class="text-center">
+          <p id="heroAvgRating" class="font-display font-extrabold text-2xl sm:text-3xl text-white flex items-center justify-center gap-1.5">
+            4.9 <span class="text-amber-400 text-xl sm:text-2xl">★</span>
+          </p>
+          <p class="text-xs sm:text-sm text-blue-200 mt-1 font-medium">Calificación promedio</p>
+        </div>
+        <div class="text-center border-x border-white/15 px-2">
+          <p id="heroTotalJobs" class="font-display font-extrabold text-2xl sm:text-3xl text-white">+2.400</p>
+          <p class="text-xs sm:text-sm text-blue-200 mt-1 font-medium">Trabajos concretados</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">100%</p>
+          <p class="text-xs sm:text-sm text-blue-200 mt-1 font-medium">DNI y Antecedentes OK</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIRA DE CATEGORÍAS -->
+  <section id="oficios-populares" class="bg-white border-b border-slate-200/80 shadow-sm py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900">¿Qué servicio o local buscás hoy?</h2>
+        <button type="button" onclick="openAllTradesModal()" class="text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-blueDark hover:underline transition flex items-center gap-1">
+          <span>Ver catálogo completo de oficios y rubros</span> →
+        </button>
+      </div>
+
+      <div id="categoryStrip" class="flex items-center gap-3 overflow-x-auto no-scrollbar py-1 scroll-smooth">
+        <!-- Renderizado dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORIO + FILTROS EN CASCADA -->
+  <main id="directorio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-1">
+
+    <!-- Panel de Filtros Container -->
+    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-card p-5 sm:p-7 mb-10 transition-all">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-100">
+        <div>
+          <div class="flex flex-wrap items-center gap-3">
+            <h2 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">Directorio de Oficios y Locales Fijos</h2>
+            <span id="dataStatusBadge" class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+              <span class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></span>
+              Conectando con Google Forms CSV V2...
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Sumamos las registraciones en vivo aprobadas con la base inicial de verificación</p>
+        </div>
+        <button type="button" onclick="resetAllFilters()" class="self-start sm:self-auto text-xs sm:text-sm font-bold text-brand-pink hover:text-brand-pinkHover hover:underline shrink-0">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <!-- Buscador en tiempo real -->
+      <div class="mb-5">
+        <label for="filterText" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Buscador directo por oficio, negocio o barrio (48 de CABA + Zona Norte)</label>
+        <div class="relative">
+          <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input
+            id="filterText"
+            type="text"
+            placeholder="Buscá por oficio, nombre, negocio o barrio (ej: plomero, gomería, gimnasio, Caballito, Olivos, gasista)..."
+            class="w-full rounded-2xl border border-slate-300/80 bg-slate-50/50 focus:bg-white pl-11 pr-10 py-3 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition"
+          />
+          <button
+            id="clearSearchBtn"
+            type="button"
+            aria-label="Limpiar búsqueda"
+            onclick="clearSearchText()"
+            class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Selects dinámicos encadenados: Categoría -> Oficio, Zona -> Barrio -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div>
+          <label for="filterCategory" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Categoría principal</label>
+          <select id="filterCategory" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition">
+            <option value="">Todas las categorías</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="filterOficio" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Oficio / Rubro</label>
+          <select id="filterOficio" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition">
+            <option value="">Todos los oficios</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="filterZone" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Zona principal</label>
+          <select id="filterZone" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition">
+            <option value="">Todas las zonas</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="filterNeighborhood" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Barrio (48 CABA + ZN)</label>
+          <select id="filterNeighborhood" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition">
+            <option value="">Todos los barrios</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Checkboxes + Ordenamiento -->
+      <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none bg-amber-50 hover:bg-amber-100/70 border border-amber-300/80 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-amber-900 transition-all">
+            <input id="filterDestacado" type="checkbox" class="w-4 h-4 accent-amber-600 rounded cursor-pointer" />
+            <span>⭐ Solo Patrocinados / Destacados</span>
+          </label>
+
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none bg-blue-50/80 hover:bg-blue-100/70 border border-blue-200/80 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-brand-blue transition-all">
+            <input id="filterMatriculado" type="checkbox" class="w-4 h-4 accent-brand-blue rounded cursor-pointer" />
+            <span>🏅 Solo Matriculados / Habilitados</span>
+          </label>
+
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none bg-rose-50/80 hover:bg-rose-100/70 border border-rose-200/80 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-brand-pink transition-all">
+            <input id="filterUrgencias" type="checkbox" class="w-4 h-4 accent-brand-pink rounded cursor-pointer" />
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-brand-pink pulse-dot"></span>
+              Urgencias 24 hs
+            </span>
+          </label>
+
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none bg-rose-50 hover:bg-rose-100 border border-rose-300 px-4 py-2 rounded-full text-xs sm:text-sm font-bold text-brand-pink transition-all" title="Mostrá solo los profesionales y locales que guardaste">
+            <input id="filterFavorites" type="checkbox" class="w-4 h-4 accent-brand-pink rounded cursor-pointer" />
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              Solo Mis Favoritos (<span id="favCountChip">0</span>)
+            </span>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between md:justify-end gap-4 text-xs sm:text-sm">
+          <span id="resultsCount" class="font-bold text-slate-600">Cargando directorio...</span>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400 font-medium hidden sm:inline">Ordenar:</span>
+            <select id="sortOrder" aria-label="Ordenar resultados" class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+              <option value="destacado">⭐ Destacados primero</option>
+              <option value="rating">Mejor puntuados</option>
+              <option value="jobs">Más trabajos</option>
+              <option value="name">Alfabético (A-Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 3 DE MONETIZACIÓN: TARJETA DE APORTE VOLUNTARIO SIN COMISIONES CON CORAZÓN PULSANTE -->
+    <div class="mb-10 bg-gradient-to-r from-amber-500/15 via-rose-500/10 to-amber-500/15 border-2 border-amber-400 rounded-3xl p-5 sm:p-7 shadow-gold-glow flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden">
+      <div class="flex items-center gap-4 relative z-10">
+        <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-3xl shrink-0 shadow-lg border border-amber-300">
+          <svg class="w-8 h-8 text-white fill-current heart-pulse" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-display font-extrabold text-slate-900 text-lg sm:text-xl">¿Te ayudamos a resolver tu problema? Apoyá este proyecto comunitario</h3>
+          <p class="text-xs sm:text-sm text-slate-700 mt-1 leading-relaxed">OficiosAR es 100% gratuito y sin comisiones para vecinos y profesionales. Tu colaboración permite mantener el servidor y la verificación activa.</p>
+        </div>
+      </div>
+      <button type="button" onclick="openDonateModal()" class="shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg transition duration-200 whitespace-nowrap flex items-center gap-2 transform hover:scale-105">
+        <svg class="w-4 h-4 text-rose-950 fill-current heart-pulse" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>Apoyar proyecto con un aporte voluntario</span>
+      </button>
+    </div>
+
+    <!-- GRILLA DE TARJETAS DE PROFESIONALES Y LOCALES -->
+    <div id="prosGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+      <!-- Renderizado dinámico por JS -->
+    </div>
+
+    <!-- PAGINACIÓN -->
+    <div id="paginationContainer" class="hidden mt-10 text-center">
+      <button
+        id="loadMoreBtn"
+        type="button"
+        onclick="loadMoreProfessionals()"
+        class="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-slate-900 hover:text-white text-slate-900 border-2 border-slate-900 font-display font-bold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all duration-200 group"
+      >
+        <span>Ver más profesionales y locales</span>
+        <span id="remainingCountBadge" class="text-xs font-extrabold bg-brand-blue text-white group-hover:bg-brand-pink px-2.5 py-0.5 rounded-full transition-colors"></span>
+      </button>
+    </div>
+
+    <!-- Estado vacío -->
+    <div id="emptyState" class="hidden bg-white border border-slate-200/90 rounded-3xl p-10 sm:p-14 text-center max-w-lg mx-auto my-8 shadow-card">
+      <div id="emptyStateIcon" class="w-16 h-16 mx-auto rounded-full bg-brand-blueLight text-brand-blue flex items-center justify-center text-3xl mb-4">🔍</div>
+      <h3 id="emptyStateTitle" class="font-display font-bold text-xl text-slate-900">No encontramos registros</h3>
+      <p id="emptyStateText" class="text-sm text-slate-500 mt-2 leading-relaxed">Probá ampliando la búsqueda a otra zona o barrio, o quitando alguno de los filtros activos.</p>
+      <button type="button" onclick="resetAllFilters()" class="mt-6 inline-flex items-center justify-center bg-brand-blue hover:bg-brand-blueDark text-white text-sm font-bold px-7 py-3 rounded-full shadow-md transition">
+        Mostrar todos los profesionales
+      </button>
+    </div>
+  </main>
+
+  <!-- PILAR 2 DE MONETIZACIÓN: CARRUSEL ESCALABLE DE COMERCIOS / SPONSORS DEL BARRIO CON MAPA -->
+  <section id="comercios-destacados" class="bg-slate-900 text-white py-14 sm:py-18 border-y border-slate-800 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado con título, botón de anunciar y filtros de zona -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+        <div>
+          <span class="inline-block text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full mb-2">Locales Fijos & Sponsors</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white">Comercios Recomendados del Barrio</h2>
+          <p class="text-slate-400 text-sm mt-1">Ferreterías, sanitarios, corralones, pinturerías y servicios de cercanía en San Isidro, Vicente López y CABA</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <button type="button" onclick="openSponsorsModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-400/40 font-bold text-xs sm:text-sm px-5 py-3 rounded-full transition shadow-md flex items-center gap-2">
+            <span>🔍 Ver todos los comercios (Directorio)</span>
+          </button>
+          <a href="https://wa.me/5491155976414?text=Hola,%20quisiera%20anunciar%20mi%20comercio%20en%20OficiosAR" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-lg text-center">
+            📢 Anunciá tu comercio aquí
+          </a>
+        </div>
+      </div>
+
+      <!-- Filtros rápidos por zona para el carrusel + Botones de navegación -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/80">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs text-slate-400 font-semibold mr-1">Filtrar por zona:</span>
+          <button type="button" onclick="filterSponsorsCarousel('', this)" class="sponsor-zone-btn bg-amber-500 text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full transition">Todos</button>
+          <button type="button" onclick="filterSponsorsCarousel('San Isidro', this)" class="sponsor-zone-btn bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs px-3.5 py-1.5 rounded-full transition">San Isidro</button>
+          <button type="button" onclick="filterSponsorsCarousel('Vicente López', this)" class="sponsor-zone-btn bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs px-3.5 py-1.5 rounded-full transition">Vicente López</button>
+          <button type="button" onclick="filterSponsorsCarousel('Capital Federal', this)" class="sponsor-zone-btn bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs px-3.5 py-1.5 rounded-full transition">CABA</button>
+        </div>
+
+        <div class="flex items-center gap-2 self-end sm:self-auto">
+          <button type="button" onclick="scrollSponsors('left')" aria-label="Anterior comercio" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 flex items-center justify-center transition shadow-md">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button type="button" onclick="scrollSponsors('right')" aria-label="Siguiente comercio" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 flex items-center justify-center transition shadow-md">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carrusel horizontal scrolleable con botones Google Maps -->
+      <div id="sponsorsCarousel" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
+        <!-- Renderizado dinámicamente por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PILAR 1 DE MONETIZACIÓN: PLANES PARA PROFESIONALES (TRANSPARENCIA CLARA SIN BUROCRACIA) -->
+  <section id="planes-profesionales" class="py-14 sm:py-20 bg-slate-100/70 border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-blue bg-blue-100 px-3 py-1 rounded-full">Planes para Profesionales y Locales</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mt-2">Destacá tu perfil o negocio y recibí más contactos</h2>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">Sumate a la plataforma de oficios y servicios verificados de Zona Norte y Capital Federal</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+        <!-- PLAN INICIAL -->
+        <div class="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-display font-extrabold text-xl text-slate-900">Plan Inicial</h3>
+              <span class="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded-full">Gratuito</span>
+            </div>
+            <div class="mb-6">
+              <span class="font-display font-extrabold text-4xl text-slate-900">$0</span>
+              <span class="text-sm text-slate-500 font-medium"> / mes</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-600 mb-8">
+              <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Registro en el directorio general</li>
+              <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Verificación de DNI + Antecedentes</li>
+              <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Botón directo a tu WhatsApp</li>
+              <li class="flex items-center gap-2.5 opacity-40"><span class="text-slate-400">✕</span> Posición preferencial en primeros lugares</li>
+              <li class="flex items-center gap-2.5 opacity-40"><span class="text-slate-400">✕</span> Insignia 'Patrocinado · Verificado'</li>
+            </ul>
+          </div>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfzQXC2WzTcRWTqLKTp7r8XdSHICLEvNv2elotLf3SlCgGgEA/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-full text-sm transition shadow-md text-center block"
+          >
+            Postular gratis
+          </a>
+        </div>
+
+        <!-- PLAN DESTACADO VERIFICADO ($10.000/MES) CON DESCRIPCIÓN TRANSPARENTE EXACTA -->
+        <div class="bg-gradient-to-b from-amber-500/10 via-white to-white rounded-3xl border-2 border-amber-400 p-8 shadow-gold-glow flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-amber-500 text-slate-950 font-extrabold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+            Más Popular
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-display font-extrabold text-xl text-slate-900 flex items-center gap-2">
+                <span>Plan Destacado</span>
+                <span class="text-amber-500">⭐</span>
+              </h3>
+            </div>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="font-display font-extrabold text-4xl text-slate-900">$10.000</span>
+                <span class="text-sm text-slate-500 font-medium"> / mes</span>
+              </div>
+              <p class="text-xs text-amber-800 font-bold mt-1.5 flex items-center gap-1">
+                <span>🔥</span> Sin comisiones por trabajo realizado
+              </p>
+            </div>
+
+            <!-- DESCRIPCIÓN TRANSPARENTE REQUERIDA -->
+            <div class="bg-amber-500/10 border border-amber-300 rounded-2xl p-4 mb-6 text-xs text-slate-800 leading-relaxed font-medium">
+              <p><strong>Posicionamiento preferencial</strong> en los primeros lugares de tu rubro y zona con insignia <strong>"Patrocinado · Verificado"</strong>. Requiere DNI y Certificado de Antecedentes Penales aprobados. Ante reportes graves respaldados con comprobantes verificables, el perfil será suspendido previa revisión.</p>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-700 mb-8">
+              <li class="flex items-center gap-2.5 font-bold"><span class="text-amber-500">★</span> Primeros puestos garantizados en la grilla</li>
+              <li class="flex items-center gap-2.5 font-bold"><span class="text-amber-500">★</span> Borde dorado + Insignia "Patrocinado · Verificado"</li>
+              <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Hasta 3 veces más contactos por semana</li>
+              <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Inclusión de dirección física y botón Google Maps</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5491155976414?text=Hola,%20quiero%20consultar%20por%20el%20Plan%20Destacado%20Verificado%20($10.000/mes)" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold py-3.5 rounded-full text-sm transition shadow-lg text-center">
+            Consultar por Plan Destacado →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section id="opiniones" class="bg-white border-t border-slate-200/80 py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Seguridad y Confianza</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mt-1">Lo que opinan los vecinos</h2>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">Experiencias reales de servicios y visitas en San Isidro, Vicente López y CABA</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="bg-slate-50/70 border border-slate-200/80 rounded-3xl p-7 flex flex-col justify-between hover:shadow-card transition duration-200">
+          <div>
+            <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">"Lo que más me dio tranquilidad fue ver que tenían antecedentes penales chequeados. Vino a cambiar una pérdida en Martínez un domingo."</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-900">Carolina M. · Martínez</span>
+            <span class="text-brand-blue font-semibold bg-blue-50 px-2.5 py-1 rounded-full">Plomería 24 hs</span>
+          </div>
+        </article>
+
+        <article class="bg-slate-50/70 border border-slate-200/80 rounded-3xl p-7 flex flex-col justify-between hover:shadow-card transition duration-200">
+          <div>
+            <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">"Carlos Gómez hizo toda la prueba de hermeticidad y la regulación de estufas con matrícula. Excelente atención en San Isidro."</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-900">Hernán G. · Olivos</span>
+            <span class="text-brand-blue font-semibold bg-blue-50 px-2.5 py-1 rounded-full">Gasista Matriculado</span>
+          </div>
+        </article>
+
+        <article class="bg-slate-50/70 border border-slate-200/80 rounded-3xl p-7 flex flex-col justify-between hover:shadow-card transition duration-200">
+          <div>
+            <div class="text-amber-400 text-sm mb-3">★★★★★</div>
+            <p class="text-sm text-slate-700 leading-relaxed italic">"Buscaba un taller mecánico en San Isidro con dirección clara y mapa. Fui directo y me arreglaron el neumático en el acto."</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-900">Gonzalo P. · San Isidro</span>
+            <span class="text-brand-blue font-semibold bg-blue-50 px-2.5 py-1 rounded-full">Taller Mecánico</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER LEGAL Y SOPORTE -->
+  <footer class="bg-slate-950 text-slate-400 pt-14 pb-8 border-t border-slate-900 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-slate-900 text-xs sm:text-sm">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-brand-blue flex items-center justify-center text-white font-display font-extrabold text-lg shadow-sm">O</div>
+            <span class="font-display font-extrabold text-xl text-white">oficios<span class="text-brand-pink">AR</span></span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Directorio independiente de oficios y locales fijos verificados para San Isidro, Vicente López y los 48 barrios de Capital Federal. Contacto directo por WhatsApp sin intermediación de pagos.
+          </p>
+          <div class="mt-4 flex flex-col gap-2">
+            <button type="button" onclick="openSafePaymentModal()" class="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1 text-left">
+              🛡️ Ver Guía de Pago Seguro
+            </button>
+            <button type="button" onclick="openLegalTermsModal()" class="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1 text-left">
+              📜 Términos y Condiciones Completo
+            </button>
+            <button type="button" onclick="openPwaModal()" class="text-xs font-bold text-emerald-400 hover:underline flex items-center gap-1 text-left">
+              📱 Instalar App en tu celular
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-white mb-4 text-sm">Zonas de Cobertura</h3>
+          <ul class="space-y-2 text-xs">
+            <li><button type="button" onclick="filterByZoneOnly('San Isidro')" class="hover:text-white transition">San Isidro (Martínez, Beccar, Acassuso...)</button></li>
+            <li><button type="button" onclick="filterByZoneOnly('Vicente López')" class="hover:text-white transition">Vicente López (Olivos, Florida, Munro...)</button></li>
+            <li><button type="button" onclick="filterByZoneOnly('Capital Federal')" class="hover:text-white transition">Capital Federal (Los 48 barrios oficiales)</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-white mb-4 text-sm">Monetización & Pro</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#planes-profesionales" class="hover:text-white transition">Plan Destacado ($10.000/mes)</a></li>
+            <li><a href="#comercios-destacados" class="hover:text-white transition">Publicidad Comercios</a></li>
+            <li><button type="button" onclick="openDonateModal()" class="hover:text-white transition text-amber-400 font-bold">♥ Aporte Voluntario Web</button></li>
+            <li><button type="button" onclick="openProModal()" class="hover:text-white transition">Iniciar Postulación Verificada</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-white mb-4 text-sm">Soporte & Legal</h3>
+          <ul class="space-y-2 text-xs">
+            <li><button type="button" onclick="openSupportModal()" class="hover:text-white transition text-rose-300">Soporte, Reclamos o Denuncias</button></li>
+            <li><button type="button" onclick="openLegalTermsModal()" class="hover:text-white transition text-blue-300">Términos, Privacidad y Exención</button></li>
+            <li><button type="button" onclick="openSafePaymentModal()" class="hover:text-white transition">Recomendaciones de Seguridad</button></li>
+            <li><button type="button" onclick="openPwaModal()" class="hover:text-white transition text-emerald-300">Instrucciones de App Móvil</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DESLINDE LEGAL VISIBLE -->
+      <div class="py-6 border-b border-slate-900 text-[11px] text-slate-400 leading-relaxed">
+        <p class="font-bold text-slate-300 mb-1">AVISO LEGAL Y CLÁUSULA DE RESPONSABILIDAD:</p>
+        <p>
+          OficiosAR opera exclusivamente como un directorio informativo público y plataforma de contacto directo entre vecinos, profesionales e instalaciones comerciales independientes. OficiosAR no presta servicios directos ni mantiene relación de dependencia, representación legal, sociedad ni intermediación laboral con los prestadores listados. Todos los presupuestos, pactos de trabajo y pagos se acuerdan de manera privada entre las partes. Recomendamos solicitar siempre presupuesto por escrito y seguir la Guía de Pago Seguro.
+        </p>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 OficiosAR · Argentina. Todos los derechos reservados.</p>
+        <p>Conectando vecinos con profesionales y comercios en Zona Norte y CABA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE ACEPTACIÓN LEGAL OBLIGATORIA Y TÉRMINOS COMPLETOS -->
+  <div id="legalWelcomeModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl relative border border-slate-100 my-auto overflow-hidden">
+      <!-- Encabezado Fijo -->
+      <div class="p-5 sm:p-6 border-b border-slate-100 bg-slate-50/90 shrink-0 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-brand-blue text-white flex items-center justify-center font-display font-extrabold text-xl shadow-md">O</div>
+          <div>
+            <h3 class="font-display font-extrabold text-lg sm:text-xl text-slate-900 leading-tight">Términos y Condiciones de Uso</h3>
+            <p class="text-xs text-slate-500">OficiosAR — Plataforma Digital Comunitaria</p>
+          </div>
+        </div>
+        <button id="legalCloseXBtn" type="button" onclick="closeLegalTermsModalManual()" class="hidden text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-200/60 transition" aria-label="Cerrar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Cuerpo Scrolleable Completo -->
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed bg-white font-sans max-h-[85vh]">
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-brand-blue font-medium text-xs">
+          📌 <strong>Aviso Importante:</strong> Para continuar navegando y consultar los contactos verificados de OficiosAR, debes leer y aceptar los presentes Términos, Política de Privacidad y Cláusula de Exención de Responsabilidad Civil y Penal.
+        </div>
+
+        <div>
+          <h4 class="font-display font-extrabold text-base text-slate-900 border-b pb-2 mb-3">
+            OficiosAR – Términos y Condiciones de Uso, Política de Privacidad y Cláusula Integral de Exención de Responsabilidad Civil y Penal
+          </h4>
+
+          <div class="space-y-3 mb-6">
+            <h5 class="font-bold text-slate-900 text-sm">1. Términos y Condiciones de Uso (TCU)</h5>
+            <p><strong>1.1 Objeto:</strong> OficiosAR es un directorio online gratuito que permite a los vecinos de San Isidro, Vicente López y la Ciudad Autónoma de Buenos Aires consultar anuncios de servicios de oficios y comercios de cercanía para contactar directamente a prestadores independientes.</p>
+            <p><strong>1.2 Naturaleza del Servicio:</strong> OficiosAR actúa únicamente como un medio de difusión. No constituye ni genera relación laboral, mandato ni intermediación financiera entre los usuarios, conforme a la Ley 24.240.</p>
+            <p><strong>1.3 Postulación y Verificación Documental:</strong> Al postularse, el prestador debe adjuntar su DNI y Certificado de Antecedentes Penales vigente. Dicha revisión puntual formal al alta no constituye garantía futura ni certificación sobre mala praxis.</p>
+            <p><strong>1.4 Suspensión por Reclamos Graves:</strong> Ante reportes graves respaldados con comprobantes verificables, el perfil o local será suspendido previa revisión por el equipo administrador.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie Fijo Obligatorio con Checkbox -->
+      <div id="legalModalFooter" class="p-5 sm:p-6 border-t border-slate-200 bg-slate-50 shrink-0 space-y-4">
+        <label class="flex items-start gap-3 cursor-pointer select-none group">
+          <input type="checkbox" id="legalAgreeCheck" onchange="toggleLegalAcceptButton()" class="mt-0.5 w-5 h-5 accent-brand-blue rounded shrink-0 cursor-pointer" />
+          <span class="text-xs sm:text-sm text-slate-800 font-semibold group-hover:text-slate-900">
+            He leído y acepto los Términos y Condiciones, Política de Privacidad y Cláusula de Exención de Responsabilidad Civil y Penal de OficiosAR
+          </span>
+        </label>
+        <button
+          id="btnAcceptLegal"
+          disabled
+          onclick="acceptLegalTerms()"
+          class="w-full bg-brand-blue hover:bg-brand-blueDark disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-extrabold py-3.5 px-6 rounded-full text-sm shadow-md transition"
+        >
+          Aceptar y continuar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RECORDATORIO AL PEDIR PRESUPUESTO POR WHATSAPP -->
+  <div id="wsReminderModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto text-center">
+      <button type="button" onclick="closeWsReminderModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mb-4 font-bold shadow-sm">
+        💬
+      </div>
+
+      <h3 class="font-display font-extrabold text-xl text-slate-900">¡Conexión iniciada con éxito!</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+        ¡Listo! Ya te conectamos por WhatsApp con <strong id="wsWorkerName" class="text-slate-900 font-bold"></strong>.
+      </p>
+      <div class="mt-4 bg-amber-50/90 border border-amber-200 rounded-2xl p-4 text-xs text-slate-700 text-left space-y-2">
+        <p class="font-bold text-amber-900 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-rose-500 fill-current heart-pulse shrink-0" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          Recordatorio Comunitario:
+        </p>
+        <p class="leading-relaxed">
+          Si este proyecto gratuito te ayuda a resolver tu problema sin pagar comisiones ni intermediarios, recordá que podés apoyar el sitio con un aporte voluntario ♥
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-2.5">
+        <button type="button" onclick="closeWsReminderModal(); openDonateModal();" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold py-3.5 px-4 rounded-full text-sm shadow-md transition flex items-center justify-center gap-2 transform hover:scale-105">
+          <svg class="w-4 h-4 text-rose-950 fill-current heart-pulse" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span>Abrir datos de Aporte Voluntario</span>
+        </button>
+        <button type="button" onclick="closeWsReminderModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-full text-xs transition">
+          Volver a la web
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL AVISO FICHA DEMO (PERFILES DE EJEMPLO SIN CONTACTO REAL) -->
+  <div id="demoContactModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto text-center">
+      <button type="button" onclick="closeDemoContactModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-blueLight text-brand-blue flex items-center justify-center text-3xl mb-4 font-bold shadow-sm">
+        ℹ️
+      </div>
+
+      <h3 class="font-display font-extrabold text-xl text-slate-900">Ficha de ejemplo</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+        <strong id="demoWorkerName" class="text-slate-900 font-bold"></strong> es un perfil de demostración del directorio: los datos de contacto son ficticios y no corresponden a una persona ni comercio real.
+      </p>
+      <div class="mt-4 bg-blue-50/90 border border-blue-200 rounded-2xl p-4 text-xs text-slate-700 text-left space-y-2">
+        <p class="font-bold text-brand-blue">¿Sos profesional o tenés un local?</p>
+        <p class="leading-relaxed">
+          Postulate con verificación de DNI y antecedentes y tu ficha real, con contacto directo por WhatsApp, aparece acá para todos los vecinos.
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-2.5">
+        <button type="button" onclick="closeDemoContactModal(); openProModal();" class="w-full bg-brand-pink hover:bg-brand-pinkHover text-white font-extrabold py-3.5 px-4 rounded-full text-sm shadow-md transition">
+          Quiero postular mi servicio o local
+        </button>
+        <button type="button" onclick="closeDemoContactModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-full text-xs transition">
+          Volver a la web
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL POSTULACIÓN VERIFICADA -->
+  <div id="proModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closeProModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl mb-4 font-bold">
+        🛡️
+      </div>
+
+      <h3 class="font-display font-extrabold text-2xl text-slate-900">Postulación Verificada</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+        Para mantener la máxima seguridad de la comunidad, TODOS los postulantes deben presentar su documentación para ser aprobados en el directorio.
+      </p>
+
+      <div class="mt-5 bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-3 text-xs text-slate-700">
+        <p class="font-bold text-slate-900">Requisitos obligatorios para la revisión:</p>
+        <div class="flex items-start gap-2.5">
+          <span class="text-emerald-600 font-bold">1.</span>
+          <span>DNI Argentino (Frente y Dorso) + Selfie de validación.</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <span class="text-emerald-600 font-bold">2.</span>
+          <span><strong>Certificado de Antecedentes Penales vigente</strong> (emitido vía Mi Argentina o RNR).</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <span class="text-emerald-600 font-bold">3.</span>
+          <span>Constancia de Matrícula (para gasistas, plomeros AySA, electricistas COPIME, etc.).</span>
+        </div>
+      </div>
+
+      <!-- DESCRIPCIÓN TRANSPARENTE DEL PLAN DESTACADO EN EL MODAL -->
+      <div class="mt-4 bg-amber-50 border border-amber-200 rounded-2xl p-3.5 text-xs text-amber-900 leading-relaxed font-medium">
+        ⭐ <strong>Opción Plan Destacado ($10.000/mes):</strong> Posicionamiento preferencial en los primeros lugares de tu rubro y zona con insignia <em>"Patrocinado · Verificado"</em>. Requiere DNI y Certificado de Antecedentes Penales aprobados. Ante reportes graves respaldados con comprobantes verificables, el perfil será suspendido previa revisión.
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfzQXC2WzTcRWTqLKTp7r8XdSHICLEvNv2elotLf3SlCgGgEA/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3.5 px-6 rounded-full text-center text-sm shadow-md transition duration-200 flex items-center justify-center gap-2"
+        >
+          <span>Iniciar Postulación Verificada</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CATÁLOGO MAESTRO AMPLIO DE RUBROS Y OFICIOS -->
+  <div id="allTradesModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 flex flex-col my-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 shrink-0">
+        <div>
+          <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900">Catálogo Completo de Oficios y Locales Fijos</h3>
+          <p class="text-xs sm:text-sm text-slate-500">Servicios a domicilio, talleres, comercios y centros en tu barrio · Tocá cualquier oficio para filtrar el directorio</p>
+        </div>
+        <button type="button" onclick="closeAllTradesModal()" aria-label="Cerrar" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div id="masterTradesContainer" class="py-6 space-y-6 flex-1 pr-1">
+        <!-- Generado dinámicamente con las 6 categorías ampliadas -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL APORTE VOLUNTARIO SIN COMISIONES CON DATOS EXACTOS -->
+  <div id="donateModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closeDonateModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-3xl mb-4 font-bold shadow-sm">
+        <svg class="w-8 h-8 text-rose-600 fill-current heart-pulse" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+
+      <h3 class="font-display font-extrabold text-2xl text-slate-900">Aporte Voluntario sin Comisiones</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+        El aporte voluntario se destina al mantenimiento de la plataforma, validación de documentación y servidores web.
+      </p>
+
+      <div class="mt-6 bg-gradient-to-b from-amber-50 to-rose-50/40 border border-amber-200/90 rounded-2xl p-4 space-y-4 shadow-sm">
+        <div>
+          <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider block">Alias Mercado Pago / BNA</span>
+          <div class="flex items-center justify-between gap-2 mt-1 bg-white px-3 py-2 rounded-xl border border-amber-200 shadow-xs">
+            <span class="font-mono font-extrabold text-slate-900 text-base">fabi.ari.wolf</span>
+            <button type="button" onclick="copyToClipboard('fabi.ari.wolf', this)" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-lg transition shrink-0">
+              Copiar Alias
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider block">CVU Naranja X</span>
+          <div class="flex items-center justify-between gap-2 mt-1 bg-white px-3 py-2 rounded-xl border border-amber-200 shadow-xs">
+            <span class="font-mono font-bold text-slate-800 text-xs truncate">4530000800015626933487</span>
+            <button type="button" onclick="copyToClipboard('4530000800015626933487', this)" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-lg transition shrink-0">
+              Copiar CVU
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-amber-200/60 text-xs text-amber-950 flex items-center justify-between">
+          <span>Titular de la cuenta:</span>
+          <strong class="font-extrabold">Fabian Ariel Wolf</strong>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-center text-slate-400 mt-4">¡Muchas gracias por apoyar este proyecto comunitario!</p>
+    </div>
+  </div>
+
+  <!-- MODAL SOPORTE Y RECLAMOS -->
+  <div id="supportModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closeSupportModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center text-2xl mb-4 font-bold">
+        📢
+      </div>
+
+      <h3 class="font-display font-extrabold text-2xl text-slate-900">Soporte y Denuncias</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+        ¿Tuviste algún inconveniente con un prestador, querés denunciar un perfil o consultar sobre la plataforma?
+      </p>
+
+      <div class="mt-6 space-y-3">
+        <a
+          href="https://wa.me/5491155976414?text=Hola,%20quisiera%20realizar%20un%20reclamo%20o%20denuncia%20sobre%20un%20perfil"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-2xl text-sm transition flex items-center justify-center gap-2 shadow-md"
+        >
+          <span>Reportar o Denunciar Perfil por WhatsApp</span>
+        </a>
+
+        <a
+          href="https://wa.me/5491155976414?text=Hola,%20tengo%20una%20consulta%20técnica%20sobre%20OficiosAR"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3.5 px-4 rounded-2xl text-sm transition flex items-center justify-center gap-2"
+        >
+          <span>Consulta General de Soporte</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GUÍA DE PAGO SEGURO Y RECOMENDACIONES DE SEGURIDAD -->
+  <div id="safePaymentModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closeSafePaymentModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mb-4 font-bold">
+        🛡️
+      </div>
+
+      <h3 class="font-display font-extrabold text-2xl text-slate-900">Recomendaciones de Seguridad y Pago Seguro</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">Consejos prácticos para contratar de forma transparente, protegida y sin sorpresas.</p>
+
+      <div class="mt-5 space-y-4 text-xs sm:text-sm text-slate-700">
+        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+          <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1 flex items-center gap-2">
+            <span>📝</span> 1. Pedí Presupuesto por Escrito por WhatsApp
+          </h4>
+          <p class="text-slate-600 leading-relaxed">Solicitá el desglose detallado de mano de obra y materiales antes de autorizar cualquier trabajo o visita.</p>
+        </div>
+
+        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+          <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1 flex items-center gap-2">
+            <span>🤝</span> 2. Esquema Sugerido de Pago 50% / 50%
+          </h4>
+          <p class="text-slate-600 leading-relaxed">No entregues la totalidad del dinero por adelantado. Acordá abonar hasta un 50% inicial para materiales y el 50% restante contra entrega probada a conformidad.</p>
+        </div>
+
+        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+          <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1 flex items-center gap-2">
+            <span>🏅</span> 3. Verificá la Matrícula Oficial
+          </h4>
+          <p class="text-slate-600 leading-relaxed">Para instalaciones de gas o electricidad de potencia, solicitá la credencial física o número de matrícula oficial (ENARGAS / COPIME / APSE).</p>
+        </div>
+      </div>
+
+      <button type="button" onclick="closeSafePaymentModal()" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-full text-sm shadow-md transition">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DIRECTORIO COMPLETO DE SPONSORS / COMERCIOS -->
+  <div id="sponsorsModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 flex flex-col my-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 shrink-0">
+        <div>
+          <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900">Directorio de Comercios y Sponsors del Barrio</h3>
+          <p class="text-xs sm:text-sm text-slate-500">Ferreterías, sanitarios, corralones y proveedores recomendados</p>
+        </div>
+        <button type="button" onclick="closeSponsorsModal()" aria-label="Cerrar" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Buscador interno del modal de sponsors -->
+      <div class="py-4 border-b border-slate-100 flex flex-col sm:flex-row gap-3 shrink-0">
+        <div class="relative flex-1">
+          <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input
+            id="sponsorModalSearchInput"
+            type="text"
+            placeholder="Buscar comercio por nombre, insumo o dirección..."
+            oninput="renderSponsorsModalGrid()"
+            class="w-full rounded-xl border border-slate-300 bg-slate-50 pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
+          />
+        </div>
+
+        <select id="sponsorModalZoneSelect" onchange="renderSponsorsModalGrid()" class="rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue shrink-0">
+          <option value="">Todas las zonas</option>
+          <option value="San Isidro">San Isidro</option>
+          <option value="Vicente López">Vicente López</option>
+          <option value="Capital Federal">Capital Federal (CABA)</option>
+        </select>
+      </div>
+
+      <!-- Grilla completa de sponsors -->
+      <div id="sponsorsModalGrid" class="py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1">
+        <!-- Renderizado dinámico por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INSTRUCCIONAL INSTALACIÓN PWA / APP EN CELULARES -->
+  <div id="pwaModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closePwaModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mb-4 font-bold">
+        📱
+      </div>
+
+      <h3 class="font-display font-extrabold text-2xl text-slate-900">Instalar App en tu Celular</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+        Accedé a OficiosAR como una app nativa en tu teléfono sin descargas pesadas.
+      </p>
+
+      <div id="pwaInstallBtnNativeContainer" class="mt-4 hidden">
+        <button
+          id="pwaInstallBtnNative"
+          type="button"
+          onclick="triggerNativeInstall()"
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-4 rounded-2xl text-sm shadow-md transition flex items-center justify-center gap-2"
+        >
+          <span>📲 Instalar App con 1 Clic</span>
+        </button>
+      </div>
+
+      <div class="mt-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900 flex items-start gap-2.5">
+        <span class="text-base leading-none mt-0.5">⚡</span>
+        <span class="leading-relaxed">
+          <strong>Mejora nueva:</strong> la app se instala en 1 toque (botón de arriba, cuando aparece) y guarda el directorio en tu celular, así que <strong>abre incluso sin internet</strong> mostrando la última información cargada.
+        </span>
+      </div>
+
+      <div class="mt-5 space-y-4 text-xs text-slate-700">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+          <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-1">
+            <span class="text-base">🤖</span> En Android (Chrome / Brave):
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+            <li>Tocá el menú de <strong>tres puntos (⋮)</strong> arriba a la derecha.</li>
+            <li>Seleccioná <strong>"Agregar a la pantalla principal"</strong> o <strong>"Instalar aplicación"</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+          <div class="flex items-center gap-2 font-bold text-slate-900 text-sm mb-1">
+            <span class="text-base">🍎</span> En iPhone / iPad (Safari):
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-600 pl-1">
+            <li>Tocá el botón <strong>Compartir</strong> (icono de cuadrado con flecha ⎕↑).</li>
+            <li>Desplazate hacia abajo y elegí <strong>"Agregar a inicio"</strong> (+).</li>
+          </ol>
+        </div>
+      </div>
+
+      <button type="button" onclick="closePwaModal()" class="mt-6 w-full bg-slate-900 text-white font-bold py-3 rounded-full text-sm">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: LÓGICA COMPLETA Y FUNCIONAL V2 -->
+  <script>
+    // URL CSV ACTUALIZADA BASE DE DATOS V2
+    const GOOGLE_SHEET_CSV_URL =
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-qlLzc1vIKKRIZRuuxGeLvQuUgr7oJ8h9DGpS6zGIAcEIuD_LKMD3Tvd5BQBlULJBIFhqc-IIk8Jq/pub?gid=1344697194&single=true&output=csv';
+
+    const PAGE_SIZE = 9;
+
+    // CATÁLOGO MAESTRO AMPLIO DE RUBROS Y OFICIOS (INCLUYE SERVICIOS A DOMICILIO Y LOCALES FIJOS)
+    // 14 CATEGORÍAS · 128 OFICIOS · CADA CATEGORÍA LLEVA UNA DESCRIPCIÓN CORTA
+    const MASTER_CATALOG = [
+      {
+        category: 'Automotor y Talleres',
+        icon: '🚗',
+        desc: 'Talleres mecánicos, gomerías y servicios para tu auto o moto',
+        trades: [
+          'Taller Mecánico',
+          'Gomería',
+          'Electricidad del Automotor',
+          'Lubricentro',
+          'Auxilio Vehicular',
+          'Chapería y Pintura',
+          'Taller de Motos',
+          'Lavado y Detailing',
+          'Audio y Alarmas para Autos'
+        ]
+      },
+      {
+        category: 'Comercios y Materiales',
+        icon: '🏭',
+        desc: 'Ferreterías, corralones y todo para tu obra o reparación',
+        trades: [
+          'Ferretería Industrial',
+          'Corralón de Materiales',
+          'Casa de Sanitarios y Gas',
+          'Casa de Electricidad',
+          'Pinturería',
+          'Aberturas y Vidrios',
+          'Herramientas (Venta y Reparación)',
+          'Cerramientos y Rejas'
+        ]
+      },
+      {
+        category: 'Hogar y Mantenimiento',
+        icon: '🏠',
+        desc: 'Plomería, gas, electricidad y arreglos de la casa a domicilio',
+        trades: [
+          'Plomero',
+          'Gasista matriculado',
+          'Electricista',
+          'Cerrajero 24hs',
+          'Técnico Aire Acondicionado',
+          'Reparación de Electrodomésticos',
+          'Vidriero',
+          'Destapaciones',
+          'Jardinería',
+          'Poda de Árboles',
+          'Control de Plagas y Fumigación',
+          'Limpieza de Casas y Oficinas',
+          'Limpieza de Tanques y Piletas',
+          'Impermeabilizaciones',
+          'Calefacción y Calderas',
+          'Colocación de Cortinas y Persianas',
+          'Pequeños Trabajos del Hogar'
+        ]
+      },
+      {
+        category: 'Construcción y Reformas',
+        icon: '🧱',
+        desc: 'Albañiles, pintores y profesionales para construir, reformar y decorar',
+        trades: [
+          'Albañil',
+          'Pintor',
+          'Durlock',
+          'Techista',
+          'Herrero',
+          'Carpintero',
+          'Colocador de Pisos',
+          'Arquitecto y Planos',
+          'Diseño de Interiores',
+          'Muebles a Medida',
+          'Cerámico y Porcelanato'
+        ]
+      },
+      {
+        category: 'Salud, Deporte y Bienestar',
+        icon: '🏋️‍♂️',
+        desc: 'Gimnasios, entrenamiento personal, kinesiología y masajes',
+        trades: [
+          'Gimnasio',
+          'Centro de Entrenamiento',
+          'Kinesiología',
+          'Personal Trainer',
+          'Yoga y Pilates',
+          'Nutricionista',
+          'Masajes y Terapias'
+        ]
+      },
+      {
+        category: 'Mascotas',
+        icon: '🐾',
+        desc: 'Veterinarias, peluquería canina, paseadores y cuidado diario',
+        trades: [
+          'Veterinaria',
+          'Clínica Veterinaria 24hs',
+          'Veterinario a Domicilio',
+          'Peluquería Canina',
+          'Paseador de Perros',
+          'Adiestrador Canino',
+          'Pet Sitting',
+          'Cuidado de Mascotas a Domicilio',
+          'Traslado de Mascotas (Pet Taxi)'
+        ]
+      },
+      {
+        category: 'Cuidado de Personas y Traslados',
+        icon: '👶',
+        desc: 'Niñeras, cuidado de adultos mayores, fletes y mudanzas',
+        trades: [
+          'Babysitter / Niñera',
+          'Cuidado de Adultos Mayores',
+          'Personal Doméstico',
+          'Chofer Particular',
+          'Fletes y Mudanzas',
+          'Mensajería y Encomiendas',
+          'Transporte Escolar',
+          'Gestoría y Trámites'
+        ]
+      },
+      {
+        category: 'Tecnología y Cámaras',
+        icon: '💻',
+        desc: 'Reparación de celulares y PC, WiFi y cámaras de seguridad',
+        trades: [
+          'Reparación de Celulares',
+          'Reparación de Computadoras',
+          'Soporte Informático a Domicilio',
+          'Instalación de Cámaras y Alarmas',
+          'Redes y WiFi',
+          'Programador / Desarrollo Web',
+          'Diseño Gráfico e Impresiones',
+          'Instalación de TV y Decodificadores'
+        ]
+      },
+      {
+        category: 'Belleza y Estética',
+        icon: '✂️',
+        desc: 'Peluquerías, barberías, uñas, pestañas y estética',
+        trades: [
+          'Peluquería Unisex',
+          'Barbería',
+          'Salón de Belleza',
+          'Nail Art / Uñas',
+          'Maquillaje Profesional',
+          'Depilación',
+          'Tatuajes y Piercings',
+          'Pestañas y Cejas'
+        ]
+      },
+      {
+        category: 'Eventos y Gastronomía',
+        icon: '🎉',
+        desc: 'Catering, parrilleros, fotógrafos, DJ y todo para tu fiesta',
+        trades: [
+          'Catering',
+          'Parrillero a Domicilio',
+          'Cocinero para Eventos',
+          'Decoración de Eventos',
+          'Alquiler de Livings y Gazebos',
+          'Fotógrafo de Eventos',
+          'Video y Drones',
+          'DJ y Sonido',
+          'Animador Infantil'
+        ]
+      },
+      {
+        category: 'Educación y Clases',
+        icon: '🎓',
+        desc: 'Idiomas, música, apoyo escolar y clases deportivas',
+        trades: [
+          'Profesor de Idiomas',
+          'Apoyo Escolar',
+          'Clases de Música',
+          'Clases de Canto',
+          'Clases de Natación',
+          'Clases de Fútbol Infantil',
+          'Clases de Baile y Danza'
+        ]
+      },
+      {
+        category: 'Salud Profesional',
+        icon: '🩺',
+        desc: 'Médicos, enfermería, psicología y especialidades de la salud',
+        trades: [
+          'Médico a Domicilio',
+          'Enfermería a Domicilio',
+          'Psicología y Salud Mental',
+          'Fonoaudiología',
+          'Podología',
+          'Óptica y Anteojos',
+          'Farmacia',
+          'Otras Especialidades Médicas (Indicá tu Especialidad)'
+        ]
+      },
+      {
+        category: 'Reparaciones Especializadas',
+        icon: '🛠️',
+        desc: 'Zapatería, relojería, sastre y otros oficios de precisión',
+        trades: [
+          'Marroquinería y Calzado',
+          'Relojería',
+          'Tapicero',
+          'Sastre y Arreglos de Ropa',
+          'Tintorería y Lavadero',
+          'Afilado de Cuchillos y Tijeras',
+          'Grabados y Trofeos'
+        ]
+      },
+      {
+        category: 'Almacenes y Tiendas',
+        icon: '🏪',
+        desc: 'Almacenes, panaderías y los comercios de siempre del barrio',
+        trades: [
+          'Almacén de Barrio',
+          'Panadería',
+          'Carnicería',
+          'Verdulería',
+          'Dietética',
+          'Librería y Papelera',
+          'Juguetería',
+          'Zapatería',
+          'Regalería',
+          'Indumentaria Femenina',
+          'Indumentaria Masculina',
+          'Bijouterie y Accesorios'
+        ]
+      }
+    ];
+
+    // LISTADO OFICIAL COMPLETO DE LOS 48 BARRIOS DE CABA EN ORDEN ALFABÉTICO
+    const CABA_48_BARRIOS = [
+      'Agronomía', 'Almagro', 'Balvanera', 'Barracas', 'Belgrano', 'Boedo', 'Caballito', 'Chacarita',
+      'Coghlan', 'Colegiales', 'Constitución', 'Flores', 'Floresta', 'La Boca', 'La Paternal', 'Liniers',
+      'Mataderos', 'Monte Castro', 'Monserrat', 'Nueva Pompeya', 'Núñez', 'Palermo', 'Parque Avellaneda',
+      'Parque Chacabuco', 'Parque Chas', 'Parque Patricios', 'Puerto Madero', 'Recoleta', 'Retiro',
+      'Saavedra', 'San Cristóbal', 'San Nicolás', 'San Telmo', 'Vélez Sarsfield', 'Versalles',
+      'Villa Crespo', 'Villa del Parque', 'Villa Devoto', 'Villa General Mitre', 'Villa Lugano',
+      'Villa Luro', 'Villa Ortúzar', 'Villa Pueyrredón', 'Villa Real', 'Villa Riachuelo',
+      'Villa Santa Rita', 'Villa Soldati', 'Villa Urquiza'
+    ];
+
+    const NEIGHBORHOODS_BY_ZONE = {
+      'san isidro': ['San Isidro Centro', 'Martínez', 'Acassuso', 'Beccar', 'Boulogne', 'Villa Adelina', 'La Horqueta'],
+      'vicente lopez': ['Olivos', 'Vicente López', 'Florida', 'Florida Oeste', 'Munro', 'Villa Martelli', 'Carapachay', 'La Lucila'],
+      'capital federal': CABA_48_BARRIOS,
+      'caba': CABA_48_BARRIOS
+    };
+
+    // BASE DE DATOS DE SPONSORS / COMERCIOS LOCALES CON DIRECCIÓN Y GOOGLE MAPS
+    const SPONSORS_DATA = [
+      {
+        id: 'sp-1',
+        img: 'img/sponsor-ferreteria-tropezon.jpg',
+        name: 'Ferretería El Tropezón',
+        category: 'Comercios y Materiales',
+        zone: 'San Isidro',
+        neighborhood: 'Martínez',
+        address: 'Av. Santa Fe 1840',
+        desc: 'Insumos para plomería, electricidad, herramientas de mano y eléctricas. Descuentos a profesionales matriculados.',
+        phone: '5491155976414',
+        badge: 'Ferretería Industrial'
+      },
+      {
+        id: 'sp-2',
+        img: 'img/sponsor-sanitarios-norte.jpg',
+        name: 'Sanitarios Norte',
+        category: 'Comercios y Materiales',
+        zone: 'Vicente López',
+        neighborhood: 'Olivos',
+        address: 'Av. Maipú 2950',
+        desc: 'Repuestos oficiales Sigas, Awaduct, IPS, termotanques y calderas. Envíos directos a obra en 24 hs.',
+        phone: '5491155976414',
+        badge: 'Casa de Sanitarios y Gas'
+      },
+      {
+        id: 'sp-3',
+        img: 'img/sponsor-corralon-belgrano.jpg',
+        name: 'Corralón & Pinturería Belgrano',
+        category: 'Comercios y Materiales',
+        zone: 'Capital Federal',
+        neighborhood: 'Belgrano',
+        address: 'Av. Cabildo 3120',
+        desc: 'Pintura de obra, Durlock, perfiles, impermeabilizantes y materiales pesados para refacciones integrales.',
+        phone: '5491155976414',
+        badge: 'Corralón de Materiales'
+      },
+      {
+        id: 'sp-4',
+        img: 'img/sponsor-electricidad-si.jpg',
+        name: 'Electricidad San Isidro',
+        category: 'Comercios y Materiales',
+        zone: 'San Isidro',
+        neighborhood: 'San Isidro Centro',
+        address: 'Av. Centenario 750',
+        desc: 'Cables normalizados IRAM, térmicas Schneider, tableros industriales y luminaria LED de alta eficiencia.',
+        phone: '5491155976414',
+        badge: 'Casa de Electricidad'
+      },
+      {
+        id: 'sp-5',
+        img: 'img/sponsor-bulonera.jpg',
+        name: 'Bulonera Olivos',
+        category: 'Comercios y Materiales',
+        zone: 'Vicente López',
+        neighborhood: 'Olivos',
+        address: 'Av. Ugarte 1520',
+        desc: 'Bulonería pesada, fijaciones químicas, aberturas, discos de corte y equipamiento de protección personal.',
+        phone: '5491155976414',
+        badge: 'Ferretería Industrial'
+      },
+      {
+        id: 'sp-6',
+        img: 'img/sponsor-pintureria-rex.jpg',
+        name: 'Pinturerías Rex Palermo',
+        category: 'Comercios y Materiales',
+        zone: 'Capital Federal',
+        neighborhood: 'Palermo',
+        address: 'Av. Santa Fe 4200',
+        desc: 'Línea completa Alba, Sherwin Williams, revestimientos plásticos Revear y asesoramiento técnico especializado.',
+        phone: '5491155976414',
+        badge: 'Pinturería'
+      }
+    ];
+
+    // MANTENER SIEMPRE VISIBLES LOS EJEMPLOS LOCALES BASE
+    // PRIVACIDAD: los teléfonos de estas fichas de ejemplo son ficticios (549110000000X) y jamás se usan:
+    // al tocar "Contactar por WhatsApp" en una ficha demo se muestra un aviso en lugar de abrir WhatsApp.
+    const BASE_8_PROFESSIONALS = [
+      {
+        id: 'local-carlos-gomez',
+        img: 'img/demo-gasista.jpg',
+        name: 'Carlos Gómez',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Hogar y Mantenimiento',
+        oficio: 'Gasista matriculado',
+        specialty: 'Gasista Matriculado 1ª Cat. · Obras y Certificaciones',
+        zone: 'San Isidro',
+        neighborhoods: ['San Isidro Centro', 'Martínez', 'Acassuso', 'Beccar'],
+        address: 'Av. Centenario 450',
+        matriculado: true,
+        matriculaCode: 'ENARGAS #28419',
+        urgencias24: true,
+        rating: 5.0,
+        jobs: 320,
+        reviews: 142,
+        phone: '5491100000006',
+        reviewQuote: 'Carlos resolvió la pérdida de gas e hizo la prueba de hermeticidad el mismo día. Sumamente profesional.',
+        reviewAuthor: 'Hernán G.',
+        verificado: true,
+        destacado: true,
+        isBase: true
+      },
+      {
+        id: 'local-martin-echeverria',
+        img: 'img/demo-plomero.jpg',
+        name: 'Martín Echeverría',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Hogar y Mantenimiento',
+        oficio: 'Plomero',
+        specialty: 'Plomero y Destapaciones · Termotanques',
+        zone: 'San Isidro',
+        neighborhoods: ['Martínez', 'Acassuso', 'San Isidro Centro', 'Beccar'],
+        address: '',
+        matriculado: true,
+        matriculaCode: 'Mat. AySA #4821',
+        urgencias24: true,
+        rating: 4.9,
+        jobs: 248,
+        reviews: 94,
+        phone: '5491100000001',
+        reviewQuote: 'Vino en 40 minutos un domingo y solucionó una pérdida en el baño principal.',
+        reviewAuthor: 'Carolina M.',
+        verificado: true,
+        destacado: true,
+        isBase: true
+      },
+      {
+        id: 'local-diego-fernandez',
+        img: 'img/demo-electricista.jpg',
+        name: 'Diego Fernández',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Hogar y Mantenimiento',
+        oficio: 'Electricista',
+        specialty: 'Electricista Matriculado · Tableros y Puesta a Tierra',
+        zone: 'Vicente López',
+        neighborhoods: ['Olivos', 'La Lucila', 'Vicente López', 'Florida'],
+        address: '',
+        matriculado: true,
+        matriculaCode: 'COPIME #19402',
+        urgencias24: false,
+        rating: 5.0,
+        jobs: 312,
+        reviews: 127,
+        phone: '5491100000002',
+        reviewQuote: 'Hizo la actualización del tablero eléctrico y puso disyuntor diferencial.',
+        reviewAuthor: 'Lucía F.',
+        verificado: true,
+        destacado: true,
+        isBase: true
+      },
+      {
+        id: 'local-taller-rossi',
+        img: 'img/demo-taller-rossi.jpg',
+        name: 'Taller Rossi',
+        ownerName: 'Roberto Rossi',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Automotor y Talleres',
+        oficio: 'Taller Mecánico',
+        specialty: 'Mecánica General · Gomería 24hs · Tren Delantero',
+        zone: 'San Isidro',
+        neighborhoods: ['San Isidro Centro', 'Martínez', 'Beccar'],
+        address: 'Av. Rolón 1280',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: true,
+        rating: 4.8,
+        jobs: 185,
+        reviews: 68,
+        phone: '5491100000007',
+        reviewQuote: 'Excelente atención en el taller, diagnosticaron la falla y me lo entregaron en el día.',
+        reviewAuthor: 'Gonzalo P.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-gimnasio-vital',
+        img: 'img/demo-gimnasio.jpg',
+        name: 'Gimnasio & Kinesiología Vital',
+        ownerName: 'Dra. María Elena Ramos',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Salud, Deporte y Bienestar',
+        oficio: 'Gimnasio',
+        specialty: 'Centro de Entrenamiento · Kinesiología y Rehabilitación',
+        zone: 'Capital Federal',
+        neighborhoods: ['Belgrano', 'Núñez', 'Palermo'],
+        address: 'Av. Cabildo 2450',
+        matriculado: true,
+        matriculaCode: 'Lic. Kinesiólogo M.N. 1245',
+        urgencias24: false,
+        rating: null,
+        jobs: 45,
+        reviews: null,
+        phone: '5491100000008',
+        reviewQuote: '',
+        reviewAuthor: '',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-gustavo-morales',
+        img: 'img/demo-tecnico-aire.jpg',
+        name: 'Gustavo Morales',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Hogar y Mantenimiento',
+        oficio: 'Técnico Aire Acondicionado',
+        specialty: 'Instalación Split, Inverter y Carga de Gas',
+        zone: 'San Isidro',
+        neighborhoods: ['Boulogne', 'Villa Adelina', 'Martínez', 'Beccar'],
+        address: '',
+        matriculado: true,
+        matriculaCode: 'CACAAV #5510',
+        urgencias24: false,
+        rating: 4.9,
+        jobs: 174,
+        reviews: 63,
+        phone: '5491100000003',
+        reviewQuote: 'Instaló dos equipos Inverter con prueba de vacío. Todo perfecto.',
+        reviewAuthor: 'Federico R.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-valeria-dominguez',
+        img: 'img/demo-pintora.jpg',
+        name: 'Valeria Domínguez',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Construcción y Reformas',
+        oficio: 'Pintor',
+        specialty: 'Pintura de Interiores, Microcemento y Durlock',
+        zone: 'Capital Federal',
+        neighborhoods: ['Recoleta', 'Palermo', 'Caballito', 'Villa Urquiza', 'Villa Devoto'],
+        address: '',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: false,
+        rating: 4.9,
+        jobs: 142,
+        reviews: 58,
+        phone: '5491100000004',
+        reviewQuote: 'Excelente terminación en paredes con humedad y entrega en fecha.',
+        reviewAuthor: 'Sofía L.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-sergio-quiroga',
+        img: 'img/demo-cerrajero.jpg',
+        name: 'Sergio Quiroga',
+        ownerName: '',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Hogar y Mantenimiento',
+        oficio: 'Cerrajero 24hs',
+        specialty: 'Apertura de Puertas, Blindadas y Copias a Domicilio',
+        zone: 'Vicente López',
+        neighborhoods: ['Munro', 'Carapachay', 'Florida', 'Villa Martelli', 'Olivos'],
+        address: 'Av. Maipú 1540',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: true,
+        rating: 4.7,
+        jobs: 410,
+        reviews: 152,
+        phone: '5491100000005',
+        reviewQuote: 'Me quedé afuera a la madrugada y llegó en 20 minutos.',
+        reviewAuthor: 'Mariana P.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-gomeria-munro',
+        img: 'img/demo-gomeria.jpg',
+        name: 'Gomería Munro 24hs',
+        ownerName: 'Facundo Ledesma',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Automotor y Talleres',
+        oficio: 'Gomería',
+        specialty: 'Cambio de Neumáticos · Reparación · Balanceo',
+        zone: 'Vicente López',
+        neighborhoods: ['Munro', 'Villa Martelli', 'Carapachay', 'Florida'],
+        address: 'Av. Mitre 3205',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: true,
+        rating: 4.7,
+        jobs: 210,
+        reviews: 76,
+        phone: '5491100000003',
+        reviewQuote: 'Pinché de madrugada y me atendieron al toque. Precios honestos.',
+        reviewAuthor: 'Julián B.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-ferreteria-acassuso',
+        img: 'img/demo-ferreteria.jpg',
+        name: 'Ferretería Acassuso',
+        ownerName: 'Marcos Villalba',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Comercios y Materiales',
+        oficio: 'Ferretería Industrial',
+        specialty: 'Tornillería · Herramientas · Material Eléctrico',
+        zone: 'San Isidro',
+        neighborhoods: ['Acassuso', 'San Isidro Centro', 'Beccar'],
+        address: 'Av. Santa Fe 720',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: false,
+        rating: 4.8,
+        jobs: 156,
+        reviews: 61,
+        phone: '5491100000009',
+        reviewQuote: 'Tiene todo: tornillería, eléctricos y herramientas. Armo el pedido por WhatsApp y lo tengo listo.',
+        reviewAuthor: 'Andrés T.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-veterinaria-olivos',
+        img: 'img/demo-veterinaria.jpg',
+        name: 'Veterinaria Olivos',
+        ownerName: 'Dra. Cecilia Ferrari',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Mascotas',
+        oficio: 'Veterinaria',
+        specialty: 'Clínica General · Vacunación · Urgencias',
+        zone: 'Vicente López',
+        neighborhoods: ['Olivos', 'La Lucila', 'Vicente López'],
+        address: 'Av. Maipú 1870',
+        matriculado: true,
+        matriculaCode: 'MV #12448',
+        urgencias24: true,
+        rating: 4.9,
+        jobs: 340,
+        reviews: 118,
+        phone: '5491100000002',
+        reviewQuote: 'Atendieron a mi perra un sábado a la noche. Espera breve y precio razonable.',
+        reviewAuthor: 'Paula D.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-corralon-boulogne',
+        img: 'img/demo-corralon.jpg',
+        name: 'Corralón Norte',
+        ownerName: 'Hugo Almada',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Comercios y Materiales',
+        oficio: 'Corralón de Materiales',
+        specialty: 'Cemento · Ladrillos · Hierros · Entrega a Obra',
+        zone: 'San Isidro',
+        neighborhoods: ['Boulogne', 'Villa Adelina', 'Martínez'],
+        address: 'Av. Márquez 1420',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: false,
+        rating: 4.6,
+        jobs: 98,
+        reviews: 41,
+        phone: '5491100000005',
+        reviewQuote: 'Me armaron el pedido de ladrillos y cemento y lo entregaron en el día sin cargo hasta obra.',
+        reviewAuthor: 'Rubén S.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-fletes-martinez',
+        img: 'img/demo-fletes.jpg',
+        name: 'Fletes & Mudanzas Martínez',
+        ownerName: 'Miguel Ángel Paredes',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Cuidado de Personas y Traslados',
+        oficio: 'Fletes y Mudanzas',
+        specialty: 'Mudanzas · Mini Fletes · Embalaje incluido',
+        zone: 'San Isidro',
+        neighborhoods: ['Martínez', 'Acassuso', 'San Isidro Centro', 'Villa Adelina'],
+        address: '',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: true,
+        rating: 4.8,
+        jobs: 220,
+        reviews: 84,
+        phone: '5491100000004',
+        reviewQuote: 'Mudanza de departamento en dos horas, embalaron todo y sin roturas.',
+        reviewAuthor: 'Verónica C.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-pelu-canina-florida',
+        img: 'img/demo-pelu-canina.jpg',
+        name: 'Peluquería Canina Peluditos',
+        ownerName: 'Jazmín Ibáñez',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Mascotas',
+        oficio: 'Peluquería Canina',
+        specialty: 'Corte de Raza · Baño · Vacunación Antipulgas',
+        zone: 'Vicente López',
+        neighborhoods: ['Florida', 'Florida Oeste', 'Munro'],
+        address: '',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: false,
+        rating: 4.9,
+        jobs: 175,
+        reviews: 66,
+        phone: '5491100000001',
+        reviewQuote: 'Corte de raza impecable, mi perro es nervioso y le tienen mucha paciencia.',
+        reviewAuthor: 'Camila O.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-cuidado-mayores-vl',
+        img: 'img/demo-cuidado-mayores.jpg',
+        name: 'Asistencia Adultos Mayores',
+        ownerName: 'Rosa Etcheverry',
+        tipoPerfil: 'Profesional / Trabajador Independiente',
+        category: 'Cuidado de Personas y Traslados',
+        oficio: 'Cuidado de Adultos Mayores',
+        specialty: 'Compañía · Higiene · Cocina Diaria',
+        zone: 'Vicente López',
+        neighborhoods: ['Vicente López', 'La Lucila', 'Olivos'],
+        address: '',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: false,
+        rating: 5.0,
+        jobs: 88,
+        reviews: 34,
+        phone: '5491100000010',
+        reviewQuote: 'Compañía y cuidados para mi mamá con mucha calidez y puntualidad.',
+        reviewAuthor: 'Estela N.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      },
+      {
+        id: 'local-autoelectrica-nunez',
+        img: 'img/demo-autoelectrica.jpg',
+        name: 'Autoeléctrica Núñez',
+        ownerName: 'Damián Ríos',
+        tipoPerfil: 'Comercio / Local a la calle',
+        category: 'Automotor y Talleres',
+        oficio: 'Electricidad del Automotor',
+        specialty: 'Diagnóstico Electrónico · Baterías · Alarmas',
+        zone: 'Capital Federal',
+        neighborhoods: ['Núñez', 'Belgrano', 'Saavedra'],
+        address: 'Manuela Pedraza 2450',
+        matriculado: false,
+        matriculaCode: '',
+        urgencias24: true,
+        rating: 4.7,
+        jobs: 130,
+        reviews: 52,
+        phone: '5491100000003',
+        reviewQuote: 'Encontró la falla eléctrica que otros dos talleres no detectaban.',
+        reviewAuthor: 'Diego H.',
+        verificado: true,
+        destacado: false,
+        isBase: true
+      }
+    ];
+
+    // ESTADO GLOBAL
+    let PROFESSIONALS = [];
+    let currentFiltered = [];
+    let visibleCount = PAGE_SIZE;
+    let currentSponsorCarouselZone = '';
+
+    // ===== SISTEMA DE FAVORITOS (GUARDADOS EN EL CELULAR DEL USUARIO) =====
+    const FAV_STORAGE_KEY = 'oficiosar_favorites_v1';
+    let favoriteIds = loadFavoritesFromStorage();
+
+    function loadFavoritesFromStorage() {
+      try {
+        const raw = localStorage.getItem(FAV_STORAGE_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        return new Set(Array.isArray(arr) ? arr.filter(item => typeof item === 'string') : []);
+      } catch (err) {
+        return new Set();
+      }
+    }
+
+    function persistFavorites() {
+      try {
+        localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(Array.from(favoriteIds)));
+      } catch (err) { /* almacenamiento no disponible */ }
+    }
+
+    function isFavorite(proId) {
+      return favoriteIds.has(proId);
+    }
+
+    function updateFavoritesUi() {
+      const chip = document.getElementById('favCountChip');
+      if (chip) chip.textContent = String(favoriteIds.size);
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      let toast = document.getElementById('appToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'appToast';
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] bg-slate-900 text-white text-sm font-bold px-5 py-3 rounded-full shadow-2xl opacity-0 translate-y-3 transition-all duration-300 pointer-events-none max-w-[90vw] text-center';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      requestAnimationFrame(() => toast.classList.remove('opacity-0', 'translate-y-3'));
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('opacity-0', 'translate-y-3'), 2200);
+    }
+
+    function toggleFavorite(proId, btnElement) {
+      if (!proId) return;
+      const nowFav = !favoriteIds.has(proId);
+      if (nowFav) favoriteIds.add(proId); else favoriteIds.delete(proId);
+      persistFavorites();
+      updateFavoritesUi();
+      showToast(nowFav ? 'Agregado a Mis Favoritos ♥' : 'Quitado de Mis Favoritos');
+
+      document.querySelectorAll(`[data-fav-id="${proId}"]`).forEach(btn => {
+        const svg = btn.querySelector('svg');
+        btn.setAttribute('aria-label', nowFav ? 'Quitar de favoritos' : 'Guardar en favoritos');
+        btn.setAttribute('title', nowFav ? 'Quitar de favoritos' : 'Guardar en favoritos');
+        if (nowFav) {
+          btn.classList.add('text-brand-pink', 'bg-rose-50', 'hover:bg-rose-100');
+          btn.classList.remove('text-slate-300', 'hover:text-brand-pink');
+          if (svg) {
+            svg.setAttribute('fill', 'currentColor');
+            svg.classList.add('fav-pop');
+            setTimeout(() => svg.classList.remove('fav-pop'), 400);
+          }
+        } else {
+          btn.classList.remove('text-brand-pink', 'bg-rose-50', 'hover:bg-rose-100');
+          btn.classList.add('text-slate-300', 'hover:text-brand-pink');
+          if (svg) svg.setAttribute('fill', 'none');
+        }
+      });
+
+      // SI EL FILTRO DE FAVORITOS ESTÁ ACTIVO, REFRESCAR LA LISTA
+      if (filterFavorites && filterFavorites.checked) applyFilters(true);
+    }
+
+    // REFERENCIAS DOM
+    const heroSearchForm = document.getElementById('heroSearchForm');
+    const heroSearchInput = document.getElementById('heroSearchInput');
+    const filterText = document.getElementById('filterText');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const filterCategory = document.getElementById('filterCategory');
+    const filterOficio = document.getElementById('filterOficio');
+    const filterZone = document.getElementById('filterZone');
+    const filterNeighborhood = document.getElementById('filterNeighborhood');
+    const filterDestacado = document.getElementById('filterDestacado');
+    const filterMatriculado = document.getElementById('filterMatriculado');
+    const filterUrgencias = document.getElementById('filterUrgencias');
+    const filterFavorites = document.getElementById('filterFavorites');
+    const sortOrder = document.getElementById('sortOrder');
+    const prosGrid = document.getElementById('prosGrid');
+    const paginationContainer = document.getElementById('paginationContainer');
+    const remainingCountBadge = document.getElementById('remainingCountBadge');
+    const emptyState = document.getElementById('emptyState');
+    const resultsCount = document.getElementById('resultsCount');
+    const categoryStrip = document.getElementById('categoryStrip');
+    const dataStatusBadge = document.getElementById('dataStatusBadge');
+    const heroAvgRating = document.getElementById('heroAvgRating');
+    const heroTotalJobs = document.getElementById('heroTotalJobs');
+
+    // UTILIDADES DE FORMATO Y NORMALIZACIÓN
+    function normalizeText(str) {
+      return String(str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, ' ');
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function sanitizeWhatsApp(raw) {
+      let digits = String(raw || '').replace(/\D/g, '');
+      if (!digits) return '';
+      if (digits.startsWith('0') && digits.length === 11) {
+        digits = '549' + digits.slice(1);
+      } else if (digits.length === 10) {
+        digits = '549' + digits;
+      }
+      return digits;
+    }
+
+    function parseBooleanCell(raw) {
+      if (typeof raw === 'boolean') return raw;
+      const norm = normalizeText(raw);
+      if (!norm) return false;
+      return ['si', 'yes', 'true', '1', 's', 'x', 'aprobado'].includes(norm);
+    }
+
+    function parseNeighborhoods(raw) {
+      const parts = String(raw || '')
+        .split(/[,;|/]+/)
+        .map(s => s.trim())
+        .filter(Boolean);
+      return parts.length ? parts : [];
+    }
+
+    // PARSER CSV RFC 4180
+    function parseCSV(text) {
+      const cleanText = String(text || '').replace(/^\uFEFF/, '');
+      const rows = [];
+      let row = [];
+      let field = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < cleanText.length; i++) {
+        const ch = cleanText[i];
+        const next = cleanText[i + 1];
+
+        if (inQuotes) {
+          if (ch === '"' && next === '"') {
+            field += '"';
+            i++;
+          } else if (ch === '"') {
+            inQuotes = false;
+          } else {
+            field += ch;
+          }
+        } else {
+          if (ch === '"') {
+            inQuotes = true;
+          } else if (ch === ',') {
+            row.push(field);
+            field = '';
+          } else if (ch === '\r' && next === '\n') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+            i++;
+          } else if (ch === '\n' || ch === '\r') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += ch;
+          }
+        }
+      }
+
+      if (field.length > 0 || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      return rows.filter(r => r.some(cell => cell.trim() !== ''));
+    }
+
+    // MAPEO EXACTO DE LAS 22 COLUMNAS DEL GOOGLE FORMS CSV V2 (BASE 0)
+    // PRIVACIDAD: Jamás se leen ni exponen índices 1 (Email), 5 (DNI/CUIT), 14 (Foto DNI) ni 15 (Antecedentes)
+    function mapCSVRowsToProfessionals(rows) {
+      if (!rows.length) return [];
+
+      const items = [];
+      const isHeader = rows[0] && (
+        normalizeText(rows[0][0]).includes('marca') ||
+        normalizeText(rows[0][3]).includes('nombre') ||
+        normalizeText(rows[0][19]).includes('estado') ||
+        normalizeText(rows[0][2]).includes('tipo')
+      );
+      const startIdx = isHeader ? 1 : 0;
+
+      for (let i = startIdx; i < rows.length; i++) {
+        const r = rows[i];
+        const getCell = idx => (idx < r.length ? String(r[idx] || '').trim() : '');
+
+        // Índice 19 (Col T): estado (APROBADO / PENDIENTE)
+        const estado = getCell(19);
+        if (normalizeText(estado) !== 'aprobado') {
+          continue; // Solo procesar filas APROBADAS
+        }
+
+        // Índice 2 (Col C): Tipo de perfil
+        const tipoPerfil = getCell(2);
+
+        // Índice 3 (Col D): Nombre y Apellido del titular
+        const nombreTitular = getCell(3);
+
+        // Índice 4 (Col E): Nombre Comercial o de Fantasía
+        const nombreComercial = getCell(4);
+
+        if (!nombreTitular && !nombreComercial) continue;
+
+        // Título principal y secundario según existencia de Nombre Comercial
+        let name = '';
+        let ownerName = '';
+        if (nombreComercial) {
+          name = nombreComercial;
+          ownerName = nombreTitular;
+        } else {
+          name = nombreTitular || 'Profesional / Local Verificado';
+          ownerName = '';
+        }
+
+        // Índice 6 (Col G): Categoría principal
+        const category = getCell(6) || 'Hogar y Mantenimiento';
+
+        // Índice 7 (Col H): Oficio, Rubro o Especialidad
+        const oficio = getCell(7) || 'Servicio General';
+
+        // Índice 8 (Col I): Zona principal
+        const zone = getCell(8) || 'Zona Norte';
+
+        // Índice 9 (Col J): Barrios / Localidades
+        const rawBarrios = getCell(9);
+        const neighborhoods = parseNeighborhoods(rawBarrios);
+
+        // Índice 10 (Col K): Dirección física del local
+        const address = getCell(10);
+
+        // Índice 11 (Col L): Teléfono WhatsApp
+        const phone = sanitizeWhatsApp(getCell(11));
+
+        // Índice 12 (Col M): Urgencias 24 hs (SI/NO)
+        const urgencias24 = parseBooleanCell(getCell(12));
+
+        // Índice 13 (Col N): Matrícula / Habilitación oficial (SI/NO)
+        const matriculado = parseBooleanCell(getCell(13));
+
+        // Índice 16 (Col Q): Descripción de servicios y horarios
+        const descripcionServicios = getCell(16);
+
+        // Índice 20 (Col U): verificado (SI / NO)
+        const verificado = parseBooleanCell(getCell(20));
+
+        // Índice 21 (Col V): destacado (SI / NO)
+        const destacado = parseBooleanCell(getCell(21));
+
+        // ID ESTABLE PARA QUE LOS FAVORITOS SOBREVIVAN A REORDENAMIENTOS DE LA PLANILLA
+        const idSlug = normalizeText(`${name} ${oficio}`).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `fila-${i}`;
+
+        items.push({
+          id: `csv-${idSlug}`,
+          name: name,
+          ownerName: ownerName,
+          tipoPerfil: tipoPerfil,
+          category: category,
+          oficio: oficio,
+          specialty: `${category} · ${oficio}`,
+          zone: zone,
+          neighborhoods: neighborhoods.length ? neighborhoods : [zone],
+          address: address,
+          matriculado: matriculado,
+          matriculaCode: matriculado ? 'Matrícula / Habilitación Oficial' : '',
+          urgencias24: urgencias24,
+          rating: null,
+          jobs: Math.floor(Math.random() * 40) + 15,
+          reviews: null,
+          phone: phone,
+          reviewQuote: descripcionServicios,
+          reviewAuthor: '',
+          verificado: verificado !== false,
+          destacado: destacado,
+          isLive: true
+        });
+      }
+
+      return items;
+    }
+
+    // MEZCLAR SIEMPRE BASE DE EJEMPLOS LOCALES CON FILAS APROBADAS DEL CSV V2
+    function mergeBaseWithLive(baseRecords, liveRecords) {
+      const merged = [...baseRecords];
+      const seenKeys = new Set(
+        baseRecords.map(p => `${normalizeText(p.name)}|${normalizeText(p.oficio)}`)
+      );
+
+      liveRecords.forEach(live => {
+        const key = `${normalizeText(live.name)}|${normalizeText(live.oficio)}`;
+        if (!seenKeys.has(key)) {
+          seenKeys.add(key);
+          merged.push(live);
+        }
+      });
+
+      return merged;
+    }
+
+    function setStatusBadge(type, text) {
+      const styles = {
+        loading: 'bg-slate-100 text-slate-600',
+        live: 'bg-emerald-50 text-emerald-800 border border-emerald-200',
+        base: 'bg-blue-50 text-brand-blue border border-blue-200'
+      };
+      const dotColors = {
+        loading: 'bg-amber-400 pulse-dot',
+        live: 'bg-emerald-500',
+        base: 'bg-brand-blue'
+      };
+
+      dataStatusBadge.className = `inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full ${styles[type] || styles.loading}`;
+      dataStatusBadge.innerHTML = `<span class="w-2 h-2 rounded-full ${dotColors[type] || dotColors.loading}"></span>${escapeHtml(text)}`;
+    }
+
+    function updateHeroStats() {
+      if (!PROFESSIONALS.length) return;
+      const totalJobs = PROFESSIONALS.reduce((sum, p) => sum + (p.jobs || 0), 0);
+      if (totalJobs > 0) {
+        heroTotalJobs.textContent = `+${totalJobs.toLocaleString('es-AR')}`;
+      }
+    }
+
+    // RENDERIZAR TIRA DE CATEGORÍAS
+    function renderCategoryStrip() {
+      const activeCat = filterCategory.value;
+
+      const pillsHtml = [
+        `<button type="button" data-cat="" class="cat-pill shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full border text-xs sm:text-sm transition-all duration-200 ${
+          activeCat === '' ? 'bg-slate-900 text-white border-slate-900 shadow-sm font-bold' : 'bg-white text-slate-700 border-slate-200/90 hover:border-brand-blue hover:bg-slate-50 font-medium'
+        }"><span>🛠️</span> Todos</button>`,
+        ...MASTER_CATALOG.map(cat => {
+          const active = normalizeText(activeCat) === normalizeText(cat.category);
+          return `<button type="button" data-cat="${escapeHtml(cat.category)}" class="cat-pill shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full border text-xs sm:text-sm transition-all duration-200 ${
+            active
+              ? 'bg-slate-900 text-white border-slate-900 shadow-sm font-bold'
+              : 'bg-white text-slate-700 border-slate-200/90 hover:border-brand-blue hover:bg-slate-50 font-medium'
+          }"><span>${cat.icon}</span> ${escapeHtml(cat.category)}</button>`;
+        })
+      ].join('');
+
+      categoryStrip.innerHTML = pillsHtml;
+
+      categoryStrip.querySelectorAll('.cat-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          const cat = pill.dataset.cat || '';
+          filterCategory.value = cat;
+          updateOficioOptions();
+          syncCategoryPills(cat);
+          applyFilters(true);
+          document.getElementById('directorio').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
+    function syncCategoryPills(activeCat) {
+      const normActive = normalizeText(activeCat);
+      categoryStrip.querySelectorAll('.cat-pill').forEach(pill => {
+        const isMatch = normalizeText(pill.dataset.cat) === normActive;
+        if (isMatch) {
+          pill.classList.add('bg-slate-900', 'text-white', 'border-slate-900', 'shadow-sm', 'font-bold');
+          pill.classList.remove('bg-white', 'text-slate-700', 'border-slate-200/90', 'font-medium');
+        } else {
+          pill.classList.remove('bg-slate-900', 'text-white', 'border-slate-900', 'shadow-sm', 'font-bold');
+          pill.classList.add('bg-white', 'text-slate-700', 'border-slate-200/90', 'font-medium');
+        }
+      });
+    }
+
+    // POBLAR SELECTS CON CATEGORÍAS Y LOS 48 BARRIOS DE CABA
+    function updateCategoryOptions() {
+      filterCategory.innerHTML = '<option value="">Todas las categorías</option>';
+      MASTER_CATALOG.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.category;
+        opt.textContent = cat.category;
+        filterCategory.appendChild(opt);
+      });
+    }
+
+    function updateOficioOptions() {
+      const selectedCat = normalizeText(filterCategory.value);
+      filterOficio.innerHTML = '<option value="">Todos los oficios y rubros</option>';
+
+      let tradesToDisplay = [];
+      if (selectedCat) {
+        const catObj = MASTER_CATALOG.find(c => normalizeText(c.category) === selectedCat);
+        if (catObj) tradesToDisplay = catObj.trades;
+      } else {
+        MASTER_CATALOG.forEach(c => tradesToDisplay.push(...c.trades));
+      }
+
+      // SUMAR OFICIOS REALES CARGADOS EN LA PLANILLA (EJ: ESPECIALIDADES MÉDICAS O RUBROS NUEVOS)
+      if (typeof PROFESSIONALS !== 'undefined') {
+        PROFESSIONALS.forEach(p => {
+          if (p.oficio && (!selectedCat || normalizeText(p.category) === selectedCat)) {
+            tradesToDisplay.push(p.oficio);
+          }
+        });
+      }
+
+      const uniqueTrades = Array.from(new Set(tradesToDisplay)).sort();
+      uniqueTrades.forEach(tr => {
+        const opt = document.createElement('option');
+        opt.value = tr;
+        opt.textContent = tr;
+        filterOficio.appendChild(opt);
+      });
+    }
+
+    function updateZoneOptions() {
+      const zones = ['San Isidro', 'Vicente López', 'Capital Federal'];
+      filterZone.innerHTML = '<option value="">Todas las zonas</option>';
+      zones.forEach(z => {
+        const opt = document.createElement('option');
+        opt.value = z;
+        opt.textContent = z;
+        filterZone.appendChild(opt);
+      });
+    }
+
+    function updateNeighborhoodOptions() {
+      const selectedZoneNorm = normalizeText(filterZone.value);
+      filterNeighborhood.innerHTML = '<option value="">Todos los barrios (48 CABA + ZN)</option>';
+
+      let barrios = [];
+      if (selectedZoneNorm) {
+        if (NEIGHBORHOODS_BY_ZONE[selectedZoneNorm]) {
+          barrios = NEIGHBORHOODS_BY_ZONE[selectedZoneNorm];
+        } else if (selectedZoneNorm.includes('capital') || selectedZoneNorm.includes('caba')) {
+          barrios = CABA_48_BARRIOS;
+        } else if (selectedZoneNorm.includes('san isidro')) {
+          barrios = NEIGHBORHOODS_BY_ZONE['san isidro'];
+        } else if (selectedZoneNorm.includes('vicente')) {
+          barrios = NEIGHBORHOODS_BY_ZONE['vicente lopez'];
+        }
+      } else {
+        Object.values(NEIGHBORHOODS_BY_ZONE).forEach(bList => barrios.push(...bList));
+      }
+
+      const uniqueBarrios = Array.from(new Set(barrios)).sort((a, b) => a.localeCompare(b, 'es'));
+      uniqueBarrios.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        filterNeighborhood.appendChild(opt);
+      });
+    }
+
+    function rebuildAllDynamicFilters() {
+      updateCategoryOptions();
+      updateOficioOptions();
+      updateZoneOptions();
+      updateNeighborhoodOptions();
+      renderCategoryStrip();
+      renderMasterCatalogModal();
+      renderSponsorsCarousel();
+    }
+
+    // RENDERIZAR MODAL DE CATÁLOGO MAESTRO
+    function renderMasterCatalogModal() {
+      const container = document.getElementById('masterTradesContainer');
+      container.innerHTML = MASTER_CATALOG.map(cat => `
+        <div class="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80">
+          <h4 class="font-display font-extrabold text-base text-slate-900 flex items-center gap-2">
+            <span class="text-xl">${cat.icon}</span> ${escapeHtml(cat.category)}
+          </h4>
+          <p class="text-xs text-slate-500 mb-3 mt-1 ml-[2.1rem]">${escapeHtml(cat.desc || '')}</p>
+          <div class="flex flex-wrap gap-2">
+            ${cat.trades.map(trade => `
+              <button
+                type="button"
+                onclick="selectTradeFromModal('${escapeHtml(trade)}', '${escapeHtml(cat.category)}')"
+                class="bg-white hover:bg-brand-blue hover:text-white text-slate-700 text-xs font-semibold px-3.5 py-2 rounded-xl border border-slate-200/90 shadow-sm transition"
+              >
+                ${escapeHtml(trade)}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function selectTradeFromModal(trade, category) {
+      closeAllTradesModal();
+      filterCategory.value = category;
+      updateOficioOptions();
+      filterOficio.value = trade;
+      applyFilters(true);
+      document.getElementById('directorio').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // SPONSORS / COMERCIOS CON DIRECCIÓN Y GOOGLE MAPS
+    function renderSponsorsCarousel() {
+      const carousel = document.getElementById('sponsorsCarousel');
+      if (!carousel) return;
+
+      const zoneNorm = normalizeText(currentSponsorCarouselZone);
+
+      const filtered = SPONSORS_DATA.filter(s => {
+        if (!zoneNorm) return true;
+        const sZoneNorm = normalizeText(s.zone);
+        if (zoneNorm.includes('capital') || zoneNorm.includes('caba')) {
+          return sZoneNorm.includes('capital') || sZoneNorm.includes('caba');
+        }
+        return sZoneNorm.includes(zoneNorm);
+      });
+
+      if (!filtered.length) {
+        carousel.innerHTML = `
+          <div class="w-full py-8 text-center text-slate-400 text-sm">
+            No hay comercios registrados en esta zona por el momento.
+          </div>
+        `;
+        return;
+      }
+
+      carousel.innerHTML = filtered.map(s => {
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.address + ', ' + s.neighborhood + ', ' + s.zone)}`;
+        return `
+          <div class="w-[290px] sm:w-[340px] shrink-0 snap-start bg-slate-800/90 border border-slate-700/80 rounded-3xl p-6 flex flex-col justify-between hover:border-amber-400/60 transition shadow-lg group">
+            <div>
+              ${s.img ? `<div class="h-36 rounded-2xl overflow-hidden mb-4 bg-slate-700"><img src="${escapeHtml(s.img)}" alt="Foto de ${escapeHtml(s.name)}" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.remove()" /></div>` : ''}
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-md truncate max-w-[65%]">
+                  ${escapeHtml(s.badge || s.category)}
+                </span>
+                <span class="text-xs text-slate-400 font-semibold truncate shrink-0">📍 ${escapeHtml(s.zone)}</span>
+              </div>
+              <h3 class="font-display font-extrabold text-xl text-white group-hover:text-amber-400 transition-colors">${escapeHtml(s.name)}</h3>
+              <p class="text-xs text-slate-300 mt-1 font-medium flex items-center justify-between gap-2">
+                <span>📍 ${escapeHtml(s.address)} (${escapeHtml(s.neighborhood)})</span>
+              </p>
+              <p class="text-slate-400 text-xs mt-3 leading-relaxed line-clamp-3">${escapeHtml(s.desc)}</p>
+
+              <!-- Botón Google Maps -->
+              <div class="mt-3">
+                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-300 hover:text-white bg-slate-700/80 hover:bg-slate-700 px-3 py-1.5 rounded-xl border border-slate-600 transition">
+                  📍 Ver en Google Maps
+                </a>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700/60 flex items-center justify-between gap-2">
+              <span class="text-xs text-slate-400 truncate">${escapeHtml(s.neighborhood)}</span>
+              <a href="https://wa.me/${s.phone}?text=${encodeURIComponent('Hola, quisiera consultar stock desde OficiosAR')}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-amber-400 hover:text-amber-300 hover:underline shrink-0 flex items-center gap-1">
+                Consultar stock →
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function scrollSponsors(direction) {
+      const carousel = document.getElementById('sponsorsCarousel');
+      if (!carousel) return;
+      const scrollAmount = 350;
+      if (direction === 'left') {
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    function filterSponsorsCarousel(zone, btnElement) {
+      currentSponsorCarouselZone = zone;
+      document.querySelectorAll('.sponsor-zone-btn').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-slate-950', 'font-extrabold');
+        b.classList.add('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+      });
+      if (btnElement) {
+        btnElement.classList.remove('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+        btnElement.classList.add('bg-amber-500', 'text-slate-950', 'font-extrabold');
+      }
+      renderSponsorsCarousel();
+    }
+
+    function openSponsorsModal() {
+      document.getElementById('sponsorsModal').classList.remove('hidden');
+      renderSponsorsModalGrid();
+    }
+
+    function closeSponsorsModal() {
+      document.getElementById('sponsorsModal').classList.add('hidden');
+    }
+
+    function renderSponsorsModalGrid() {
+      const grid = document.getElementById('sponsorsModalGrid');
+      const searchInput = document.getElementById('sponsorModalSearchInput');
+      const zoneSelect = document.getElementById('sponsorModalZoneSelect');
+      if (!grid) return;
+
+      const queryNorm = normalizeText(searchInput ? searchInput.value : '');
+      const selectedZoneNorm = normalizeText(zoneSelect ? zoneSelect.value : '');
+
+      const filtered = SPONSORS_DATA.filter(s => {
+        if (selectedZoneNorm) {
+          const sZoneNorm = normalizeText(s.zone);
+          if (selectedZoneNorm.includes('capital') || selectedZoneNorm.includes('caba')) {
+            if (!sZoneNorm.includes('capital') && !sZoneNorm.includes('caba')) return false;
+          } else if (!sZoneNorm.includes(selectedZoneNorm)) {
+            return false;
+          }
+        }
+        if (queryNorm) {
+          const searchable = normalizeText(`${s.name} ${s.category} ${s.zone} ${s.neighborhood} ${s.address} ${s.desc} ${s.badge}`);
+          if (!searchable.includes(queryNorm)) return false;
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500">
+            <p class="text-base font-bold">No encontramos comercios con ese criterio.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => {
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.address + ', ' + s.neighborhood + ', ' + s.zone)}`;
+        return `
+          <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 flex flex-col justify-between hover:border-amber-400 transition shadow-sm">
+            <div>
+              ${s.img ? `<div class="h-40 rounded-2xl overflow-hidden mb-4 bg-slate-100"><img src="${escapeHtml(s.img)}" alt="Foto de ${escapeHtml(s.name)}" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.remove()" /></div>` : ''}
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-md truncate max-w-[65%]">
+                  ${escapeHtml(s.badge || s.category)}
+                </span>
+                <span class="text-xs text-slate-500 font-semibold truncate shrink-0">📍 ${escapeHtml(s.zone)}</span>
+              </div>
+              <h4 class="font-display font-extrabold text-base text-slate-900 mb-1">${escapeHtml(s.name)}</h4>
+              <p class="text-xs text-slate-600 mb-2 font-medium">📍 ${escapeHtml(s.address)} (${escapeHtml(s.neighborhood)})</p>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">${escapeHtml(s.desc)}</p>
+              
+              <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-blue hover:underline bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-200">
+                📍 Ver en Google Maps
+              </a>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-bold text-slate-500">${escapeHtml(s.neighborhood)}</span>
+              <a href="https://wa.me/${s.phone}?text=${encodeURIComponent('Hola, quisiera consultar stock desde OficiosAR')}" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-3.5 py-1.5 rounded-xl transition inline-flex items-center gap-1">
+                <span>Consultar</span> →
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // CONEXIÓN A WHATSAPP Y MODAL DE RECORDATORIO
+    function buildWhatsAppUrl(pro) {
+      if (!pro.phone) return '#';
+      const msg = `Hola ${pro.name}, te encontré en OficiosAR. Necesito consultar por un servicio de ${pro.oficio} en ${pro.zone}. ¿Tenés disponibilidad?`;
+      return `https://wa.me/${pro.phone}?text=${encodeURIComponent(msg)}`;
+    }
+
+    function handleWhatsAppClick(proName) {
+      document.getElementById('wsWorkerName').textContent = proName;
+      document.getElementById('wsReminderModal').classList.remove('hidden');
+    }
+
+    function closeWsReminderModal() {
+      document.getElementById('wsReminderModal').classList.add('hidden');
+    }
+
+    // FICHAS DEMO: las fichas de ejemplo no abren WhatsApp (datos ficticios), muestran este aviso
+    function handleDemoContactClick(proName) {
+      document.getElementById('demoWorkerName').textContent = proName;
+      document.getElementById('demoContactModal').classList.remove('hidden');
+    }
+
+    function closeDemoContactModal() {
+      document.getElementById('demoContactModal').classList.add('hidden');
+    }
+
+    // RENDERIZADO DE TARJETA DE PROFESIONAL / LOCAL FIJO V2
+    function renderCard(pro) {
+      const initials = (pro.name || 'P')
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(w => w[0].toUpperCase())
+        .join('')
+        .slice(0, 2) || 'OF';
+
+      const waUrl = buildWhatsAppUrl(pro);
+      const barriosPreview = Array.isArray(pro.neighborhoods)
+        ? pro.neighborhoods.slice(0, 3).join(' · ') + (pro.neighborhoods.length > 3 ? ` +${pro.neighborhoods.length - 3}` : '')
+        : pro.zone;
+
+      const isDestacado = pro.destacado === true || parseBooleanCell(pro.destacado);
+
+      // DIRECCIÓN FÍSICA Y BOTÓN GOOGLE MAPS
+      const hasPhysicalAddress = Boolean(pro.address && pro.address.trim().length > 1);
+      const firstBarrio = (Array.isArray(pro.neighborhoods) && pro.neighborhoods.length > 0) ? pro.neighborhoods[0] : '';
+      const mapsQueryString = [pro.address, firstBarrio, pro.zone].filter(Boolean).join(', ');
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQueryString)}`;
+
+      const hasReviewsLoaded = pro.rating != null && pro.rating > 0 && pro.reviews != null && pro.reviews > 0;
+
+      return `
+        <article class="relative rounded-3xl border transition-all duration-300 p-6 flex flex-col justify-between group ${
+          isDestacado
+            ? 'bg-gradient-to-b from-amber-50/40 via-white to-white border-2 border-amber-400 shadow-gold-glow'
+            : 'bg-white border-slate-200/90 shadow-card hover:shadow-card-hover hover:border-blue-200'
+        }">
+
+          ${
+            isDestacado
+              ? `<div class="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                  ⭐ Patrocinado · Verificado
+                </div>`
+              : ''
+          }
+
+          <div>
+            <div class="flex items-start gap-4">
+              <div class="relative shrink-0">
+                <div class="relative w-16 h-16 rounded-2xl overflow-hidden bg-gradient-to-br from-brand-blue to-blue-900 text-white font-display font-extrabold text-xl flex items-center justify-center ring-4 ${isDestacado ? 'ring-amber-200' : 'ring-slate-100'} shadow-sm">
+                  <span>${escapeHtml(initials)}</span>
+                  ${pro.img ? `<img src="${escapeHtml(pro.img)}" alt="Foto de ${escapeHtml(pro.name)}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()" />` : ''}
+                </div>
+                <span title="Antecedentes y DNI Verificado" class="absolute -bottom-1.5 -right-1.5 w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-bold flex items-center justify-center ring-2 ring-white shadow-md">✓</span>
+              </div>
+
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider text-brand-blue bg-brand-blueLight px-2.5 py-0.5 rounded-full truncate max-w-[55%] border border-blue-100">
+                    ${escapeHtml(pro.oficio)}
+                  </span>
+                  <span class="flex items-center gap-1 shrink-0">
+                    <button
+                      type="button"
+                      data-fav-id="${escapeHtml(pro.id)}"
+                      onclick="toggleFavorite('${escapeHtml(pro.id)}', this)"
+                      aria-label="${isFavorite(pro.id) ? 'Quitar de favoritos' : 'Guardar en favoritos'}"
+                      title="${isFavorite(pro.id) ? 'Quitar de favoritos' : 'Guardar en favoritos'}"
+                      class="p-1.5 rounded-full transition-all duration-200 ${
+                        isFavorite(pro.id)
+                          ? 'text-brand-pink bg-rose-50 hover:bg-rose-100'
+                          : 'text-slate-300 hover:text-brand-pink hover:bg-rose-50'
+                      }"
+                    >
+                      <svg class="w-4 h-4" fill="${isFavorite(pro.id) ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                      </svg>
+                    </button>
+                    <span class="text-xs font-bold text-slate-500">📍 ${escapeHtml(pro.zone)}</span>
+                  </span>
+                </div>
+                <!-- Nombre Comercial o de Fantasía como título principal -->
+                <h3 class="font-display font-extrabold text-lg text-slate-900 group-hover:text-brand-blue transition-colors truncate">${escapeHtml(pro.name)}</h3>
+                <!-- Titular debajo si existe nombre comercial -->
+                ${
+                  pro.ownerName
+                    ? `<p class="text-xs text-slate-600 font-semibold truncate">Titular: ${escapeHtml(pro.ownerName)}</p>`
+                    : ''
+                }
+                <p class="text-xs text-slate-500 font-medium line-clamp-1">${escapeHtml(pro.category)}</p>
+              </div>
+            </div>
+
+            <!-- INSIGNIAS & VERIFICACIÓN -->
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              ${
+                hasReviewsLoaded
+                  ? `<span class="inline-flex items-center gap-1 text-[11px] font-bold bg-amber-50 text-amber-900 border border-amber-200 px-2.5 py-1 rounded-full">
+                      ★ ${pro.rating.toFixed(1)} (${pro.reviews} reseñas)
+                    </span>`
+                  : `<span class="inline-flex items-center gap-1 text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-full">
+                      🛡️ Documentación Verificada
+                    </span>`
+              }
+
+              ${
+                hasPhysicalAddress
+                  ? `<span class="inline-flex items-center gap-1 text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-full">
+                      🏬 Local a la calle
+                    </span>`
+                  : ''
+              }
+
+              ${
+                pro.matriculado
+                  ? `<span class="inline-flex items-center gap-1 text-[11px] font-bold bg-blue-50 text-brand-blue border border-blue-200/80 px-2.5 py-1 rounded-full">
+                      🏅 Matriculado / Habilitado
+                    </span>`
+                  : ''
+              }
+              ${
+                pro.urgencias24
+                  ? `<span class="inline-flex items-center gap-1.5 text-[11px] font-bold bg-rose-50 text-brand-pink border border-rose-200/80 px-2.5 py-1 rounded-full">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-pink pulse-dot"></span> Urgencias 24 hs
+                    </span>`
+                  : ''
+              }
+            </div>
+
+            <!-- DIRECCIÓN FÍSICA DEL LOCAL Y BOTÓN GOOGLE MAPS -->
+            ${
+              hasPhysicalAddress
+                ? `<div class="mt-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl p-3 text-xs text-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="truncate">
+                      <span class="inline-block bg-amber-100 text-amber-900 text-[10px] font-extrabold px-2 py-0.5 rounded-md mr-1.5">Local a la calle</span>
+                      <span class="font-bold text-slate-900">${escapeHtml(pro.address)}</span>
+                    </div>
+                    <a
+                      href="${mapsUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="shrink-0 inline-flex items-center justify-center gap-1.5 text-[11px] font-bold text-brand-blue hover:text-blue-900 bg-white hover:bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-xl shadow-2xs transition"
+                    >
+                      <span>📍 Ver en Google Maps</span>
+                    </a>
+                  </div>`
+                : ''
+            }
+
+            <!-- MÉTRICAS DE REVISIÓN -->
+            <div class="mt-4 grid grid-cols-3 gap-2 bg-slate-50/80 border border-slate-200/70 rounded-2xl p-3 text-center">
+              <div>
+                <p class="text-xs sm:text-sm font-extrabold text-slate-900">
+                  ${hasReviewsLoaded ? `★ ${pro.rating.toFixed(1)}` : '✓ OK'}
+                </p>
+                <p class="text-[10px] sm:text-[11px] font-medium text-slate-500">${hasReviewsLoaded ? 'Puntaje' : 'Verificado'}</p>
+              </div>
+              <div class="border-x border-slate-200">
+                <p class="text-xs sm:text-sm font-extrabold text-slate-900">${pro.jobs || 25}</p>
+                <p class="text-[10px] sm:text-[11px] font-medium text-slate-500">Trabajos</p>
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-extrabold text-emerald-700">DNI + RNR</p>
+                <p class="text-[10px] sm:text-[11px] font-medium text-slate-500">Antecedentes</p>
+              </div>
+            </div>
+
+            <p class="mt-4 text-xs text-slate-500 font-medium">
+              <span class="font-bold text-slate-700">Barrios:</span> ${escapeHtml(barriosPreview)}
+            </p>
+
+            ${
+              pro.reviewQuote
+                ? `<blockquote class="mt-3 bg-slate-50 border border-slate-200/80 rounded-2xl p-3">
+                    <p class="text-xs text-slate-600 italic leading-relaxed">"${escapeHtml(pro.reviewQuote)}"</p>
+                  </blockquote>`
+                : ''
+            }
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100">
+            ${
+              pro.isBase
+                ? `<button type="button" onclick="handleDemoContactClick('${escapeHtml(pro.name.replace(/'/g, "\\'"))}')" class="w-full inline-flex items-center justify-center gap-2.5 ${
+                    isDestacado
+                      ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950'
+                      : 'bg-brand-whatsapp hover:bg-brand-whatsappDark text-white'
+                  } font-bold text-sm py-3.5 px-4 rounded-2xl shadow-md transition duration-200 active:scale-[0.98]">
+                    <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969s-4.453-10-9.969-10zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.297-4.984-4.328-5.141-4.531-.141-.203-1.234-1.641-1.234-3.125s.781-2.219 1.063-2.516c.281-.297.609-.375.813-.375h.594c.188 0 .438-.078.688.516.25.609.859 2.094.938 2.25.078.156.125.344.016.547-.094.203-.156.328-.313.516-.156.188-.328.406-.469.547-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.125.688-.078.188-.203.797-.922 1.016-1.234.219-.313.438-.266.734-.156.297.109 1.891.891 2.219 1.047.328.156.547.234.625.375.078.141.078.813-.172 1.516z"/></svg>
+                    Contactar por WhatsApp
+                  </button>`
+                : `<a href="${escapeHtml(waUrl)}" target="_blank" rel="noopener noreferrer" onclick="handleWhatsAppClick('${escapeHtml(pro.name.replace(/'/g, "\\'"))}')" class="w-full inline-flex items-center justify-center gap-2.5 ${
+                    isDestacado
+                      ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950'
+                      : 'bg-brand-whatsapp hover:bg-brand-whatsappDark text-white'
+                  } font-bold text-sm py-3.5 px-4 rounded-2xl shadow-md transition duration-200 active:scale-[0.98]">
+                    <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969s-4.453-10-9.969-10zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.297-4.984-4.328-5.141-4.531-.141-.203-1.234-1.641-1.234-3.125s.781-2.219 1.063-2.516c.281-.297.609-.375.813-.375h.594c.188 0 .438-.078.688.516.25.609.859 2.094.938 2.25.078.156.125.344.016.547-.094.203-.156.328-.313.516-.156.188-.328.406-.469.547-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.125.688-.078.188-.203.797-.922 1.016-1.234.219-.313.438-.266.734-.156.297.109 1.891.891 2.219 1.047.328.156.547.234.625.375.078.141.078.813-.172 1.516z"/></svg>
+                    Contactar por WhatsApp
+                  </a>`
+            }
+          </div>
+        </article>
+      `;
+    }
+
+    function renderResults() {
+      const total = currentFiltered.length;
+      const shown = Math.min(visibleCount, total);
+
+      if (total === 0) {
+        resultsCount.textContent = 'Mostrando 0 registros';
+        prosGrid.innerHTML = '';
+        paginationContainer.classList.add('hidden');
+
+        // MENSAJES DE ESTADO VACÍO SEGÚN EL CONTEXTO
+        const emptyIcon = document.getElementById('emptyStateIcon');
+        const emptyTitle = document.getElementById('emptyStateTitle');
+        const emptyText = document.getElementById('emptyStateText');
+        if (filterFavorites.checked && favoriteIds.size === 0) {
+          if (emptyIcon) emptyIcon.textContent = '❤️';
+          if (emptyTitle) emptyTitle.textContent = 'Todavía no tenés favoritos guardados';
+          if (emptyText) emptyText.textContent = 'Tocá el corazón en cualquier tarjeta para guardar ese profesional o local acá, y encontrarlo rápido en tu próxima visita.';
+        } else if (filterFavorites.checked) {
+          if (emptyIcon) emptyIcon.textContent = '💔';
+          if (emptyTitle) emptyTitle.textContent = 'Tus favoritos no coinciden con los filtros activos';
+          if (emptyText) emptyText.textContent = 'Estás viendo solo tus favoritos combinados con otros filtros. Probá quitando alguno o ampliando la búsqueda.';
+        } else {
+          if (emptyIcon) emptyIcon.textContent = '🔍';
+          if (emptyTitle) emptyTitle.textContent = 'No encontramos registros';
+          if (emptyText) emptyText.textContent = 'Probá ampliando la búsqueda a otra zona o barrio, o quitando alguno de los filtros activos.';
+        }
+
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      resultsCount.textContent = `Mostrando ${shown} de ${total} registros aprobados`;
+
+      const slice = currentFiltered.slice(0, shown);
+      prosGrid.innerHTML = slice.map(renderCard).join('');
+
+      const remaining = total - shown;
+      if (remaining > 0) {
+        remainingCountBadge.textContent = `Quedan ${remaining}`;
+        paginationContainer.classList.remove('hidden');
+      } else {
+        paginationContainer.classList.add('hidden');
+      }
+    }
+
+    function loadMoreProfessionals() {
+      visibleCount += PAGE_SIZE;
+      renderResults();
+    }
+
+    // BUSCADOR EN TIEMPO REAL CON RECONOCIMIENTO DE BARRIOS Y LOCALES
+    function applyFilters(resetPage = true) {
+      if (resetPage) visibleCount = PAGE_SIZE;
+
+      const queryNorm = normalizeText(filterText.value);
+      const queryTokens = queryNorm ? queryNorm.split(' ') : [];
+      clearSearchBtn.classList.toggle('hidden', !filterText.value.trim());
+
+      const catNorm = normalizeText(filterCategory.value);
+      const oficioNorm = normalizeText(filterOficio.value);
+      const zoneNorm = normalizeText(filterZone.value);
+      const barrioNorm = normalizeText(filterNeighborhood.value);
+      const onlyDestacado = filterDestacado.checked;
+      const onlyMatriculado = filterMatriculado.checked;
+      const onlyUrgencias = filterUrgencias.checked;
+      const onlyFavorites = filterFavorites.checked;
+      const sort = sortOrder.value;
+
+      currentFiltered = PROFESSIONALS.filter(pro => {
+        if (catNorm && normalizeText(pro.category) !== catNorm) return false;
+        if (oficioNorm && normalizeText(pro.oficio) !== oficioNorm) return false;
+        
+        if (zoneNorm) {
+          const proZoneNorm = normalizeText(pro.zone);
+          if (zoneNorm.includes('capital') || zoneNorm.includes('caba')) {
+            if (!proZoneNorm.includes('capital') && !proZoneNorm.includes('caba')) return false;
+          } else if (!proZoneNorm.includes(zoneNorm)) {
+            return false;
+          }
+        }
+
+        if (barrioNorm) {
+          const matchesBarrio = pro.neighborhoods.some(b => normalizeText(b) === barrioNorm);
+          if (!matchesBarrio) return false;
+        }
+
+        if (onlyDestacado && !pro.destacado) return false;
+        if (onlyMatriculado && !pro.matriculado) return false;
+        if (onlyUrgencias && !pro.urgencias24) return false;
+        if (onlyFavorites && !favoriteIds.has(pro.id)) return false;
+
+        // BÚSQUEDA DIRECTA COMPLETA (tolerante a plurales y palabras incompletas)
+        if (queryTokens.length) {
+          const searchable = normalizeText(
+            `${pro.oficio} ${pro.category} ${pro.name} ${pro.ownerName || ''} ${pro.zone} ${pro.address || ''} ${pro.neighborhoods ? pro.neighborhoods.join(' ') : ''} ${pro.specialty || ''} ${pro.reviewQuote || ''}`
+          );
+          const searchableWords = searchable.split(' ');
+          for (const token of queryTokens) {
+            const stem = token.length > 4 ? token.replace(/s$/, '') : token;
+            const hit = searchable.includes(token) ||
+              (stem.length > 3 && searchableWords.some(w => w.startsWith(stem)));
+            if (!hit) return false;
+          }
+        }
+
+        return true;
+      });
+
+      // ORDENAMIENTO (DESTACADOS PRIMERO DE FORMA OBLIGATORIA)
+      currentFiltered.sort((a, b) => {
+        const isDestA = a.destacado === true || parseBooleanCell(a.destacado);
+        const isDestB = b.destacado === true || parseBooleanCell(b.destacado);
+        if (isDestA !== isDestB) {
+          return isDestA ? -1 : 1;
+        }
+        if (sort === 'jobs') return (b.jobs || 0) - (a.jobs || 0);
+        if (sort === 'name') return a.name.localeCompare(b.name, 'es', { sensitivity: 'base' });
+        const ratingA = a.rating != null ? a.rating : 0;
+        const ratingB = b.rating != null ? b.rating : 0;
+        return ratingB - ratingA;
+      });
+
+      renderResults();
+    }
+
+    // MODAL DE ACEPTACIÓN LEGAL OBLIGATORIA
+    function checkLegalTermsAcceptance() {
+      const accepted = localStorage.getItem('oficiosar_legal_accepted_v1.0');
+      if (!accepted) {
+        document.getElementById('legalCloseXBtn').classList.add('hidden');
+        document.getElementById('legalModalFooter').classList.remove('hidden');
+        document.getElementById('legalWelcomeModal').classList.remove('hidden');
+      }
+    }
+
+    function toggleLegalAcceptButton() {
+      const check = document.getElementById('legalAgreeCheck');
+      const btn = document.getElementById('btnAcceptLegal');
+      btn.disabled = !check.checked;
+    }
+
+    function acceptLegalTerms() {
+      localStorage.setItem('oficiosar_legal_accepted_v1.0', 'true');
+      document.getElementById('legalWelcomeModal').classList.add('hidden');
+    }
+
+    function openLegalTermsModal() {
+      document.getElementById('legalCloseXBtn').classList.remove('hidden');
+      document.getElementById('legalModalFooter').classList.remove('hidden');
+      document.getElementById('legalAgreeCheck').checked = true;
+      document.getElementById('btnAcceptLegal').disabled = false;
+      document.getElementById('legalWelcomeModal').classList.remove('hidden');
+    }
+
+    function closeLegalTermsModalManual() {
+      document.getElementById('legalWelcomeModal').classList.add('hidden');
+    }
+
+    // FUNCIONES AUXILIARES
+    function clearSearchText() {
+      heroSearchInput.value = '';
+      filterText.value = '';
+      applyFilters(true);
+      filterText.focus();
+    }
+
+    function resetAllFilters() {
+      heroSearchInput.value = '';
+      filterText.value = '';
+      filterCategory.value = '';
+      updateOficioOptions();
+      filterOficio.value = '';
+      filterZone.value = '';
+      updateNeighborhoodOptions();
+      filterNeighborhood.value = '';
+      filterDestacado.checked = false;
+      filterMatriculado.checked = false;
+      filterUrgencias.checked = false;
+      filterFavorites.checked = false;
+      sortOrder.value = 'destacado';
+      syncCategoryPills('');
+      applyFilters(true);
+    }
+
+    function filterByZoneOnly(zone) {
+      resetAllFilters();
+      filterZone.value = zone;
+      updateNeighborhoodOptions();
+      applyFilters(true);
+      document.getElementById('directorio').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyToClipboard(text, btnElement) {
+      const originalText = btnElement.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btnElement.textContent = '¡Copiado! ✓';
+        btnElement.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+        btnElement.classList.add('bg-emerald-600', 'text-white');
+        setTimeout(() => {
+          btnElement.textContent = originalText;
+          btnElement.classList.remove('bg-emerald-600', 'text-white');
+          btnElement.classList.add('bg-amber-500', 'hover:bg-amber-600');
+        }, 2000);
+      }).catch(() => {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        btnElement.textContent = '¡Copiado! ✓';
+        setTimeout(() => { btnElement.textContent = originalText; }, 2000);
+      });
+    }
+
+    // EVENTOS DE BÚSQUEDA Y FILTROS
+    heroSearchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      filterText.value = heroSearchInput.value;
+      applyFilters(true);
+      document.getElementById('directorio').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    heroSearchInput.addEventListener('input', () => {
+      filterText.value = heroSearchInput.value;
+      applyFilters(true);
+    });
+
+    filterText.addEventListener('input', () => {
+      heroSearchInput.value = filterText.value;
+      applyFilters(true);
+    });
+
+    filterCategory.addEventListener('change', () => {
+      updateOficioOptions();
+      syncCategoryPills(filterCategory.value);
+      applyFilters(true);
+    });
+
+    filterOficio.addEventListener('change', () => applyFilters(true));
+
+    filterZone.addEventListener('change', () => {
+      updateNeighborhoodOptions();
+      applyFilters(true);
+    });
+
+    filterNeighborhood.addEventListener('change', () => applyFilters(true));
+    filterDestacado.addEventListener('change', () => applyFilters(true));
+    filterMatriculado.addEventListener('change', () => applyFilters(true));
+    filterUrgencias.addEventListener('change', () => applyFilters(true));
+    filterFavorites.addEventListener('change', () => applyFilters(true));
+    sortOrder.addEventListener('change', () => applyFilters(true));
+
+    // MODALES
+    function openProModal() { document.getElementById('proModal').classList.remove('hidden'); }
+    function closeProModal() { document.getElementById('proModal').classList.add('hidden'); }
+
+    function openAllTradesModal() { document.getElementById('allTradesModal').classList.remove('hidden'); }
+    function closeAllTradesModal() { document.getElementById('allTradesModal').classList.add('hidden'); }
+
+    function openDonateModal() { document.getElementById('donateModal').classList.remove('hidden'); }
+    function closeDonateModal() { document.getElementById('donateModal').classList.add('hidden'); }
+
+    function openSupportModal() { document.getElementById('supportModal').classList.remove('hidden'); }
+    function closeSupportModal() { document.getElementById('supportModal').classList.add('hidden'); }
+
+    function openSafePaymentModal() { document.getElementById('safePaymentModal').classList.remove('hidden'); }
+    function closeSafePaymentModal() { document.getElementById('safePaymentModal').classList.add('hidden'); }
+
+    function openPwaModal() { document.getElementById('pwaModal').classList.remove('hidden'); }
+    function closePwaModal() { document.getElementById('pwaModal').classList.add('hidden'); }
+
+    // PWA: REGISTRO DEL SERVICE WORKER (FUNCIONAMIENTO OFFLINE)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(() => console.log('OficiosAR: Service Worker activo · la app funciona sin internet'))
+          .catch(err => console.warn('OficiosAR: Service Worker no registrado (requiere HTTPS o localhost):', err));
+      });
+    }
+
+    // OCULTAR EL BOTÓN DE INSTALAR SI LA APP YA ESTÁ INSTALADA
+    function updateInstallUi() {
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      const navBtn = document.getElementById('installAppNavBtn');
+      if (navBtn && isStandalone) navBtn.style.display = 'none';
+    }
+    updateInstallUi();
+
+    // INSTALACIÓN PWA
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const container = document.getElementById('pwaInstallBtnNativeContainer');
+      if (container) container.classList.remove('hidden');
+    });
+
+    function triggerNativeInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('App instalada');
+          }
+          deferredPrompt = null;
+        });
+      }
+    }
+
+    // CARGA DE DATOS DESDE GOOGLE FORMS CSV V2 CON MERGE INCONDICIONAL DE EJEMPLOS BASE
+    async function loadProfessionalsData() {
+      setStatusBadge('loading', 'Conectando con Google Forms CSV V2...');
+      prosGrid.innerHTML = Array.from({ length: 3 }, () => `
+        <div class="bg-white rounded-3xl border border-slate-200/80 p-6 animate-pulse space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-slate-200 shrink-0"></div>
+            <div class="flex-1 space-y-2">
+              <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+              <div class="h-5 bg-slate-200 rounded w-2/3"></div>
+            </div>
+          </div>
+          <div class="h-12 bg-slate-100 rounded-2xl"></div>
+          <div class="h-16 bg-slate-100 rounded-2xl"></div>
+        </div>
+      `).join('');
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 9000);
+
+      try {
+        const cacheBustedUrl = `${GOOGLE_SHEET_CSV_URL}&_t=${Date.now()}`;
+        const response = await fetch(cacheBustedUrl, { signal: controller.signal, cache: 'no-store' });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+        const liveRecords = mapCSVRowsToProfessionals(rows);
+
+        // MANTENER SIEMPRE LOS EJEMPLOS LOCALES BASE + SUMAR FILAS DEL CSV APROBADAS
+        PROFESSIONALS = mergeBaseWithLive(BASE_8_PROFESSIONALS, liveRecords);
+
+        if (liveRecords.length > 0) {
+          setStatusBadge('live', `${PROFESSIONALS.length} registros (${liveRecords.length} nuevos V2 en vivo)`);
+        } else {
+          setStatusBadge('base', `${BASE_8_PROFESSIONALS.length} perfiles base activos`);
+        }
+      } catch (err) {
+        console.warn('Conexión CSV V2 con fallback:', err);
+        // EN CASO DE FALLO DE RED, MANTENER LOS BASE
+        PROFESSIONALS = [...BASE_8_PROFESSIONALS];
+        setStatusBadge('base', 'Modo seguro · Perfiles base activos');
+      } finally {
+        clearTimeout(timeoutId);
+      }
+
+      updateHeroStats();
+      rebuildAllDynamicFilters();
+      applyFilters(true);
+      checkLegalTermsAcceptance();
+    }
+
+    // INICIALIZACIÓN
+    updateFavoritesUi();
+    loadProfessionalsData();
+  </script>
+</body>
+</html>

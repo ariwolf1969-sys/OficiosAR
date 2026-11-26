@@ -1,0 +1,42 @@
+{
+  "name": "OficiosAR — Directorio Verificado de Oficios y Locales",
+  "short_name": "OficiosAR",
+  "description": "Encontrá plomeros, electricistas, gasistas matriculados, talleres mecánicos, gimnasios y comercios de cercanía con antecedentes verificados en San Isidro, Vicente López y CABA.",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A3459",
+  "theme_color": "#0F4C81",
+  "categories": ["business", "utilities", "shopping"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Directorio de oficios",
+      "short_name": "Directorio",
+      "description": "Ir directo al directorio de profesionales y locales",
+      "url": "./index.html#directorio"
+    }
+  ]
+}
