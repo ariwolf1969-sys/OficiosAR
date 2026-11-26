@@ -167,13 +167,15 @@
       </p>
 
       <!-- Buscador principal -->
-      <form id="heroSearchForm" class="mt-8 sm:mt-10 max-w-3xl mx-auto bg-white p-2 rounded-2xl sm:rounded-full shadow-2xl shadow-slate-950/40 border border-white/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
+      <form id="heroSearchForm" class="relative mt-8 sm:mt-10 max-w-3xl mx-auto bg-white p-2 rounded-2xl sm:rounded-full shadow-2xl shadow-slate-950/40 border border-white/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
         <div class="flex items-center flex-1 pl-4 pr-2 py-1">
           <svg class="w-6 h-6 text-slate-400 shrink-0 mr-3" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
-          <input id="heroSearchInput" type="text" placeholder="Ej: Gasista matriculado, Taller mecánico, Belgrano, Martínez, gomería..." class="w-full py-2.5 sm:py-3.5 text-slate-900 placeholder-slate-400 text-base sm:text-lg focus:outline-none bg-transparent font-medium" />
+          <input id="heroSearchInput" type="text" autocomplete="off" placeholder="Ej: Gasista matriculado, Taller mecánico, Belgrano, Martínez, gomería..." class="w-full py-2.5 sm:py-3.5 text-slate-900 placeholder-slate-400 text-base sm:text-lg focus:outline-none bg-transparent font-medium" />
         </div>
+        <!-- AUTOCOMPLETADO ALFABÉTICO: sugerencias de rubros mientras escribís -->
+        <div id="heroSuggestBox" class="hidden absolute left-2 right-2 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 max-h-72 overflow-y-auto z-40"></div>
         <button type="submit" class="bg-brand-pink hover:bg-brand-pinkHover text-white font-bold text-base px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-full transition duration-200 shadow-lg shadow-brand-pink/30 shrink-0 flex items-center justify-center gap-2">
           <span>Buscar</span>
         </button>
@@ -196,6 +198,8 @@
           <p class="text-xs sm:text-sm text-blue-200 mt-1 font-medium">DNI y Antecedentes OK</p>
         </div>
       </div>
+
+      <p class="text-center text-blue-100/80 text-xs sm:text-sm mt-6 tracking-wide">… muy pronto llegaremos a otras localidades.</p>
     </div>
   </section>
 
@@ -246,6 +250,7 @@
           <input
             id="filterText"
             type="text"
+            autocomplete="off"
             placeholder="Buscá por oficio, nombre, negocio o barrio (ej: plomero, gomería, gimnasio, Caballito, Olivos, gasista)..."
             class="w-full rounded-2xl border border-slate-300/80 bg-slate-50/50 focus:bg-white pl-11 pr-10 py-3 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition"
           />
@@ -258,6 +263,8 @@
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
+          <!-- AUTOCOMPLETADO ALFABÉTICO: sugerencias de rubros mientras escribís -->
+          <div id="dirSuggestBox" class="hidden absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 max-h-72 overflow-y-auto z-40"></div>
         </div>
       </div>
 
@@ -587,6 +594,9 @@
             <button type="button" onclick="openLegalTermsModal()" class="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1 text-left">
               📜 Términos y Condiciones Completo
             </button>
+            <button type="button" onclick="openSuggestionModal()" class="text-xs font-bold text-amber-300 hover:underline flex items-center gap-1 text-left">
+              💡 Dejá tu sugerencia aquí
+            </button>
             <button type="button" onclick="openPwaModal()" class="text-xs font-bold text-emerald-400 hover:underline flex items-center gap-1 text-left">
               📱 Instalar App en tu celular
             </button>
@@ -616,6 +626,7 @@
           <h3 class="font-display font-bold text-white mb-4 text-sm">Soporte & Legal</h3>
           <ul class="space-y-2 text-xs">
             <li><button type="button" onclick="openSupportModal()" class="hover:text-white transition text-rose-300">Soporte, Reclamos o Denuncias</button></li>
+            <li><button type="button" onclick="openSuggestionModal()" class="hover:text-white transition text-amber-300">💡 Dejá tu sugerencia aquí</button></li>
             <li><button type="button" onclick="openLegalTermsModal()" class="hover:text-white transition text-blue-300">Términos, Privacidad y Exención</button></li>
             <li><button type="button" onclick="openSafePaymentModal()" class="hover:text-white transition">Recomendaciones de Seguridad</button></li>
             <li><button type="button" onclick="openPwaModal()" class="hover:text-white transition text-emerald-300">Instrucciones de App Móvil</button></li>
@@ -632,9 +643,8 @@
       </div>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <p>© 2026 OficiosAR · Argentina. Todos los derechos reservados.</p>
+        <p id="footerCopyright" onclick="adminSecretTap()" class="select-none cursor-default">© 2026 OficiosAR · Argentina. Todos los derechos reservados.</p>
         <p>Conectando vecinos con profesionales y comercios en Zona Norte y CABA.</p>
-        <p id="visitCounterChip" class="hidden font-semibold text-slate-400">👁 Visitas</p>
       </div>
     </div>
   </footer>
@@ -690,7 +700,7 @@
             <p><strong>2.3 Finalidad:</strong> Los datos se usan exclusivamente para: (a) realizar el control documental previo al alta; (b) publicar la ficha pública del prestador; (c) responder consultas, reclamos y denuncias; y (d) gestionar el plan de publicación elegido.</p>
             <p><strong>2.4 Almacenamiento:</strong> Las postulaciones se reciben por Google Forms y se almacenan en una planilla de Google Sheets vinculada, con acceso restringido únicamente al equipo administrador de OficiosAR. La plataforma no posee servidores propios ni bases de datos independientes.</p>
             <p><strong>2.5 Datos que se Publican y Datos que NO se Publican:</strong> La ficha pública muestra únicamente: nombre o nombre comercial, rubro y especialidad, zona y barrios de trabajo, WhatsApp de contacto y dirección comercial (solo locales a la calle). En ningún caso se publican DNI, CUIT, documentación enviada, dirección particular ni ningún dato sensible.</p>
-            <p><strong>2.6 Navegación y Visitas:</strong> El sitio utiliza un contador de visitas agregado y anónimo (sin identificar usuarios), y guarda de forma local en tu dispositivo (localStorage) tus favoritos y preferencias. No utiliza cookies publicitarias ni comparte información con terceros con fines de marketing.</p>
+            <p><strong>2.6 Navegación y Visitas:</strong> El sitio cuenta de forma anónima la cantidad de dispositivos distintos que ingresan (una sola visita por dispositivo, sin datos personales, sin cookies publicitarias y sin identificar usuarios). Guarda de forma local en tu dispositivo (localStorage) tus favoritos y preferencias. El número exacto de visitas es privado del administrador y no se muestra al público. No compartimos información con terceros con fines de marketing.</p>
             <p><strong>2.7 Derechos del Titular (ACCDP):</strong> Conforme a la Ley 25.326 y las Disposiciones de la Agencia de Acceso a la Información Pública, podés ejercer gratuitamente los derechos de acceso, rectificación, actualización, cancelación y supresión de tus datos personales, así como revocar el consentimiento, escribiendo al contacto de soporte indicado en la plataforma.</p>
             <p><strong>2.8 Menores:</strong> La plataforma está dirigida a mayores de 18 años. No recopilamos intencionalmente datos de menores de edad.</p>
           </div>
@@ -722,6 +732,49 @@
         >
           Aceptar y continuar
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE SUGERENCIAS DE USUARIOS ("Dejá tu sugerencia aquí") -->
+  <div id="suggestionModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl relative border border-slate-100 my-auto">
+      <button type="button" onclick="closeSuggestionModal()" aria-label="Cerrar" class="absolute right-5 top-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="p-6 sm:p-8 pb-4 text-center">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-3xl mb-4 shadow-sm">💡</div>
+        <h3 class="font-display font-extrabold text-xl text-slate-900">Dejá tu sugerencia</h3>
+        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Servicios que faltan, rubros nuevos, funcionalidades o mejoras: tu idea llega directo a la bandeja privada del administrador.</p>
+      </div>
+
+      <div class="px-6 sm:px-8 pb-6 space-y-4">
+        <div>
+          <label for="sugTipo" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">¿Sobre qué querés contarnos?</label>
+          <select id="sugTipo" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition">
+            <option value="Servicio o rubro nuevo">Servicio o rubro que falta</option>
+            <option value="Funcionalidad nueva">Funcionalidad nueva</option>
+            <option value="Mejora o cambio">Mejora o cambio</option>
+            <option value="Error o problema">Error o problema en la app</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div>
+          <label for="sugRubro" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Si sugerís un servicio: ¿qué rubro? (opcional)</label>
+          <input id="sugRubro" type="text" placeholder="Ej: lavarropas a domicilio, pintura de frentes..." class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition" />
+        </div>
+        <div>
+          <label for="sugMensaje" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Tu sugerencia</label>
+          <textarea id="sugMensaje" rows="4" placeholder="Contanos tu idea o qué mejorarías de la app..." class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition resize-none"></textarea>
+        </div>
+        <div>
+          <label for="sugContacto" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Tu WhatsApp (opcional, para responderte)</label>
+          <input id="sugContacto" type="text" inputmode="tel" placeholder="Ej: +54 9 11 1234-5678" class="w-full rounded-xl border border-slate-300/80 bg-slate-50/50 focus:bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition" />
+        </div>
+        <div id="sugSuccess" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 text-xs text-emerald-800 font-semibold text-center">¡Gracias! Tu sugerencia quedó registrada.</div>
+        <button type="button" onclick="sendSuggestion()" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3.5 px-6 rounded-full text-sm shadow-md transition">Enviar sugerencia</button>
+        <button type="button" onclick="sendSuggestionWhatsApp()" class="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2.5 px-4 rounded-full text-xs transition">Prefiero enviarla por WhatsApp</button>
       </div>
     </div>
   </div>
@@ -1144,7 +1197,7 @@
           'Electricidad del Automotor',
           'Lubricentro',
           'Auxilio Vehicular',
-          'Chapa y Pintura',
+          'Chapería y Pintura',
           'Taller de Motos',
           'Lavado y Detailing',
           'Audio y Alarmas para Autos'
@@ -1375,6 +1428,188 @@
       }
     ];
 
+    // ══════════════════════════════════════════════════════════════════
+    // SINÓNIMOS DE RUBROS: conecta las palabras que la gente escribe a diario
+    // (abogacía, dentista, consultoría legal, groomer, kine...) con el rubro
+    // oficial del catálogo. Aplica a TODO el catálogo y alimenta el
+    // autocompletado alfabético y los mensajes de "rubro sin fichas".
+    // Formato: 'Rubro del catálogo': ['sinónimo1', 'sinónimo2', ...]
+    // ══════════════════════════════════════════════════════════════════
+    const TRADE_SYNONYMS = {
+      // Automotor y Talleres
+      'Taller Mecánico': ['mecanico', 'mecanica', 'mecanico automotor', 'motor', 'service auto', 'arreglos de autos', 'auto'],
+      'Gomería': ['gomeria', 'neumaticos', 'llantas', 'cubiertas', 'ruedas', 'vulcanizado', 'goma'],
+      'Electricidad del Automotor': ['autoelectrico', 'electricidad del auto', 'bateria del auto', 'alternador', 'encendido'],
+      'Lubricentro': ['cambio de aceite', 'aceite del motor', 'lubricacion', 'aceite'],
+      'Auxilio Vehicular': ['grua', 'auxilio en ruta', 'remolque', 'asistencia vehicular', 'auto auxilio'],
+      'Chapería y Pintura': ['chapa', 'chaperia', 'chapista', 'carroceria', 'sacabolla', 'pintura de autos', 'pintura automotor'],
+      'Taller de Motos': ['mecanico de motos', 'moto', 'motos', 'motovehiculos', 'arreglos de motos'],
+      'Lavado y Detailing': ['lavadero de autos', 'detailing', 'pulido', 'lavado a vapor', 'abrillantado'],
+      'Audio y Alarmas para Autos': ['estereo del auto', 'autoradio', 'alarma del auto', 'polarizado', 'audio auto'],
+      // Comercios y Materiales
+      'Ferretería Industrial': ['ferreteria', 'herramientas', 'tornillos', 'bulonera', 'bulones'],
+      'Corralón de Materiales': ['corralon', 'materiales de construccion', 'cemento', 'ladrillos', 'arena'],
+      'Casa de Sanitarios y Gas': ['sanitarios', 'canerias', 'hidraulica', 'tanques', 'termotanques'],
+      'Casa de Electricidad': ['materiales electricos', 'artefactos electricos', 'iluminacion', 'lamparas'],
+      'Pinturería': ['pintureria', 'pinturas', 'esmaltes', 'latex', 'revestimientos', 'brochas'],
+      'Aberturas y Vidrios': ['aberturas', 'puertas y ventanas', 'marcos', 'puerta', 'ventana'],
+      'Herramientas (Venta y Reparación)': ['herramienta', 'amoladoras', 'taladros', 'maquinaria'],
+      'Cerramientos y Rejas': ['reja', 'rejas', 'puertas blindadas', 'portones', 'cerramiento'],
+      // Hogar y Mantenimiento
+      'Plomero': ['plomeria', 'instalaciones de agua', 'canerias', 'fontanero', 'inodoro', 'reparacion de agua'],
+      'Gasista matriculado': ['gasista', 'gas', 'instalacion de gas', 'encañerado de gas', 'artefactos de gas', 'horno', 'estufa'],
+      'Electricista': ['electricidad', 'electricista matriculado', 'instalaciones electricas', 'tablero', 'llave termica', 'cortes de luz', 'enchufes'],
+      'Cerrajero 24hs': ['cerrajero', 'cerrajeria', 'apertura de puertas', 'cerraduras', 'llaves', 'chapa de seguridad'],
+      'Técnico Aire Acondicionado': ['aire acondicionado', 'split', 'climatizacion', 'carga de gas', 'instalacion de aire', 'aire'],
+      'Reparación de Electrodomésticos': ['electrodomesticos', 'lavarropas', 'heladera', 'cocina', 'servicio tecnico', 'secarropas'],
+      'Vidriero': ['vidrio', 'vidrios', 'espejos', 'colocacion de vidrios', 'vidrieria'],
+      'Destapaciones': ['destape de cañerias', 'desobstruccion', 'camion atmosferico', 'cloacas', 'destapacion'],
+      'Jardinería': ['jardinero', 'jardin', 'paisajismo', 'cesped', 'colocacion de pasto', 'cortes de pasto'],
+      'Poda de Árboles': ['poda', 'tala de arboles', 'arbolado', 'poda en altura', 'arbol'],
+      'Control de Plagas y Fumigación': ['fumigacion', 'fumigador', 'plagas', 'desratizacion', 'desinfeccion', 'cucarachas'],
+      'Limpieza de Casas y Oficinas': ['limpieza', 'limpiadora', 'empleada de limpieza', 'servicio de limpieza', 'cleaning'],
+      'Limpieza de Tanques y Piletas': ['piletas', 'mantenimiento de piletas', 'tanque de agua', 'cloracion'],
+      'Impermeabilizaciones': ['impermeabilizacion', 'membranas', 'humedades', 'techos'],
+      'Calefacción y Calderas': ['caldera', 'estufas', 'calefaccion', 'radiadores', 'piso radiante'],
+      'Colocación de Cortinas y Persianas': ['cortinas', 'persianas', 'roller', 'venecianas', 'cortina'],
+      'Pequeños Trabajos del Hogar': ['changas', 'reparaciones varias', 'trabajos a domicilio', 'arreglos del hogar'],
+      // Construcción y Reformas
+      'Albañil': ['albanileria', 'albanil', 'construccion', 'revoques', 'mamposteria', 'piso'],
+      'Pintor': ['pintura', 'pinturas', 'pintura de casas', 'pintura de frentes', 'pintar', 'empapelado'],
+      'Durlock': ['yeso', 'cielo raso', 'placa de yeso', 'tablunia', 'divisiones'],
+      'Techista': ['techo', 'techos', 'reparacion de techos', 'canaletas', 'bajadas'],
+      'Herrero': ['herreria', 'rejas', 'portones', 'estructuras metalicas', 'metal'],
+      'Carpintero': ['carpinteria', 'muebles', 'puertas de madera', 'placard', 'madera'],
+      'Colocador de Pisos': ['pisos', 'parquet', 'porcelanato', 'plastificado', 'flooring'],
+      'Arquitecto y Planos': ['arquitectura', 'plano', 'planos', 'proyecto de obra', 'permisos de obra'],
+      'Diseño de Interiores': ['interiorismo', 'decoracion', 'diseno de ambientes', 'ambientacion'],
+      'Muebles a Medida': ['muebleria', 'muebles de madera', 'placares a medida', 'carpinteria de madera'],
+      'Cerámico y Porcelanato': ['ceramico', 'ceramicos', 'porcelanato', 'revestimientos', 'colocacion de ceramico'],
+      // Salud, Deporte y Bienestar
+      'Gimnasio': ['gym', 'fitness', 'musculacion', 'academia', 'gimnasia'],
+      'Centro de Entrenamiento': ['entrenamiento', 'crossfit', 'funcional', 'gimnasio'],
+      'Kinesiología': ['kinesiologia', 'kinesiologo', 'kine', 'fisioterapia', 'fisioterapeuta', 'rehabilitacion'],
+      'Personal Trainer': ['entrenador personal', 'profesor de educacion fisica', 'personal training', 'personal'],
+      'Yoga y Pilates': ['yoga', 'pilates', 'meditacion', 'estiramientos'],
+      'Nutricionista': ['nutricion', 'alimentacion saludable', 'dieta', 'plan alimentario', 'nutricional'],
+      'Masajes y Terapias': ['masajista', 'masaje', 'masajes descontracturantes', 'terapias alternativas', 'relajacion'],
+      // Mascotas
+      'Veterinaria': ['veterinario', 'veterinaria', 'consulta veterinaria', 'animal'],
+      'Clínica Veterinaria 24hs': ['guardia veterinaria', 'urgencias veterinarias', 'veterinaria de guardia', 'clinica'],
+      'Veterinario a Domicilio': ['veterinario a casa', 'visita veterinaria a domicilio', 'veterinario'],
+      'Peluquería Canina': ['groomer', 'grooming', 'peluqueria de perros', 'estetica canina', 'corte de perros', 'perros'],
+      'Paseador de Perros': ['paseos de perros', 'dog walker', 'paseo canino', 'paseo'],
+      'Adiestrador Canino': ['adiestramiento', 'educador canino', 'entrenamiento de perros', 'conductista'],
+      'Pet Sitting': ['pet sitter', 'hospedaje de mascotas', 'cuidado de perros', 'cuidado de gatos'],
+      'Cuidado de Mascotas a Domicilio': ['cuidadora de mascotas', 'cuidado de animales', 'mascotas'],
+      'Traslado de Mascotas (Pet Taxi)': ['pet taxi', 'traslado veterinario', 'traslado de mascotas'],
+      // Cuidado de Personas y Traslados
+      'Babysitter / Niñera': ['ninera', 'babysitter', 'cuidado de ninos', 'cuidadora infantil', 'nanny'],
+      'Cuidado de Adultos Mayores': ['cuidadora de ancianos', 'acompañante terapeutico', 'asistencia a mayores', 'cuidados domiciliarios', 'ancianos'],
+      'Personal Doméstico': ['empleada domestica', 'casas particulares', 'limpieza semanal', 'domestica'],
+      'Chofer Particular': ['chofer', 'conductor particular', 'traslados privados', 'manejador'],
+      'Fletes y Mudanzas': ['flete', 'fletes', 'mudanza', 'mudanzas', 'transporte de muebles', 'miniflete', 'camion'],
+      'Mensajería y Encomiendas': ['mensajeria', 'cadeteria', 'encomiendas', 'reparto', 'delivery'],
+      'Transporte Escolar': ['combis escolares', 'traslado escolar', 'colectivo escolar', 'escolar'],
+      'Gestoría y Trámites': ['gestor', 'gestoria', 'tramites', 'monotributo', 'gestiones', 'papeles'],
+      // Tecnología y Cámaras
+      'Reparación de Celulares': ['celular', 'celulares', 'arreglo de celulares', 'cambio de pantalla', 'tecnico de celulares'],
+      'Reparación de Computadoras': ['pc', 'notebook', 'computadora', 'computadoras', 'arreglo de pc', 'informatica'],
+      'Soporte Informático a Domicilio': ['soporte tecnico', 'informatico', 'tecnico informatico', 'pc a domicilio', 'informatica'],
+      'Instalación de Cámaras y Alarmas': ['camaras de seguridad', 'alarma', 'alarmas', 'cctv', 'monitoreo', 'camaras'],
+      'Redes y WiFi': ['wifi', 'redes', 'internet', 'routers', 'mesh', 'wifi'],
+      'Programador / Desarrollo Web': ['programador', 'paginas web', 'desarrollo web', 'webmaster', 'aplicaciones', 'web'],
+      'Diseño Gráfico e Impresiones': ['diseno grafico', 'impresiones', 'rotulacion', 'ploteos', 'tarjetas', 'grafica'],
+      'Instalación de TV y Decodificadores': ['tv', 'televisores', 'decodificadores', 'montaje de tv', 'soporte de tv'],
+      // Belleza y Estética
+      'Peluquería Unisex': ['peluqueria', 'corte de pelo', 'peluquero', 'coloracion', 'cortes'],
+      'Barbería': ['barbero', 'barba', 'corte masculino', 'barberia'],
+      'Salón de Belleza': ['belleza', 'estetica', 'salon', 'salon de estetica'],
+      'Nail Art / Uñas': ['nails', 'una', 'uñas' , 'capping', 'esmaltado semipermanente', 'manicura', 'manicure'],
+      'Maquillaje Profesional': ['maquilladora', 'maquillaje social', 'makeup', 'maquillaje'],
+      'Depilación': ['depilacion', 'cera', 'sistema ruso', 'depilacion laser'],
+      'Tatuajes y Piercings': ['tatuaje', 'tatuajes', 'tatuador', 'piercing', 'estudio de tatuajes'],
+      'Pestañas y Cejas': ['pestaña', 'pestañas', 'lash lifting', 'ceja', 'cejas', 'brow lamination'],
+      // Eventos y Gastronomía
+      'Catering': ['caterings', 'servicio gastronomico', 'eventos gastronomicos', 'banquetes'],
+      'Parrillero a Domicilio': ['parrilla', 'asador', 'parrillada', 'parrillero'],
+      'Cocinero para Eventos': ['cocina para eventos', 'chef a domicilio', 'chef', 'cocinero'],
+      'Decoración de Eventos': ['decoracion', 'globos', 'ambientacion de fiestas', 'fiestas'],
+      'Alquiler de Livings y Gazebos': ['gazebo', 'gazebos', 'living', 'livings', 'alquiler para eventos'],
+      'Fotógrafo de Eventos': ['fotografia', 'fotos', 'fotografo', 'retratos'],
+      'Video y Drones': ['video', 'dron', 'drones', 'filmaciones', 'videoclips'],
+      'DJ y Sonido': ['dj', 'sonido', 'discoteca', 'animacion musical', 'fiestas', 'musica para fiestas'],
+      'Animador Infantil': ['animacion de cumpleaños', 'mago', 'magos', 'juegos infantiles', 'animadores'],
+      // Educación y Clases
+      'Profesor de Idiomas': ['ingles', 'idioma', 'idiomas', 'profesor de ingles', 'clases de ingles', 'portugues', 'frances', 'aleman', 'english'],
+      'Apoyo Escolar': ['tutorias', 'clases particulares', 'explicaciones', 'apoyo'],
+      'Clases de Música': ['musica', 'guitarra', 'piano', 'profesor de musica', 'bajo', 'bateria', 'violin'],
+      'Clases de Canto': ['canto', 'vocalizacion', 'cantar'],
+      'Clases de Natación': ['natacion', 'pileta', 'clases de nado', 'nadar'],
+      'Clases de Fútbol Infantil': ['futbol', 'futbol infantil', 'escuelita de futbol'],
+      'Clases de Baile y Danza': ['baile', 'danza', 'danza clasica', 'folklore', 'tango', 'bailar'],
+      // Salud Profesional
+      'Médico a Domicilio': ['medico', 'doctor a domicilio', 'consultas medicas', 'clinico', 'doctor'],
+      'Enfermería a Domicilio': ['enfermero', 'enfermera', 'curaciones', 'inyectables', 'enfermeria'],
+      'Psicología y Salud Mental': ['psicologo', 'psicologia', 'terapia', 'psicoterapia', 'salud mental', 'psicologa'],
+      'Fonoaudiología': ['fonoaudiologo', 'fonoaudiologia', 'habla', 'lenguaje'],
+      'Podología': ['podologo', 'podologia', 'pies', 'uñas' , 'pedicura'],
+      'Odontología y Dentista': ['odontologo', 'dentista', 'dental', 'odontologia', 'dientes', 'limpieza dental', 'ortodoncia', 'odon'],
+      'Óptica y Anteojos': ['optica', 'anteojos', 'lentes de contacto', 'lentes', 'gafas'],
+      'Farmacia': ['farmacias', 'medicamentos', 'perfumeria', 'farmaceutico'],
+      'Otras Especialidades Médicas (Indicá tu Especialidad)': ['especialista', 'medico especialista', 'dermatologo', 'cardiologo', 'traumatologo', 'oftalmologo'],
+      // Servicios Profesionales y Otros
+      'Abogado y Estudio Jurídico': ['abogado', 'abogacia', 'abogada', 'estudio juridico', 'consultoria legal', 'letrado', 'juridico', 'derecho', 'asesoramiento legal', 'legal'],
+      'Contador y Estudio Contable': ['contador', 'contable', 'contabilidad', 'estudio contable', 'impuestos', 'monotributo', 'iva', 'balances'],
+      'Traducciones e Idiomas': ['traduccion', 'traductor', 'traducciones', 'interprete', 'traducir'],
+      'Seguros y Corredores': ['seguro', 'seguros', 'aseguradora', 'corredor de seguros', 'poliza'],
+      'Otro Rubro o Servicio (Escribí cuál)': ['otros servicios', 'varios', 'otro servicio', 'otro rubro'],
+      // Reparaciones Especializadas
+      'Marroquinería y Calzado': ['zapatero', 'calzado', 'reparacion de zapatos', 'marroquineria', 'carteras', 'zapatos'],
+      'Relojería': ['reloj', 'relojes', 'relojero', 'cambio de pilas'],
+      'Tapicero': ['tapiceria', 'tapizado', 'tapizados', 'sillones', 'fundas'],
+      'Sastre y Arreglos de Ropa': ['sastre', 'costurera', 'arreglos de ropa', 'confeccion a medida', 'sastreria', 'costura'],
+      'Tintorería y Lavadero': ['tintoreria', 'lavadero de ropa', 'planchado', 'ropa'],
+      'Afilado de Cuchillos y Tijeras': ['afilado', 'afilador', 'cuchillo', 'cuchillos', 'tijeras', 'machetes'],
+      'Grabados y Trofeos': ['grabado', 'grabados', 'trofeos', 'placas', 'medallas'],
+      // Almacenes y Tiendas
+      'Almacén de Barrio': ['almacen', 'kiosco', 'despensa'],
+      'Panadería': ['panaderia', 'pan', 'facturas', 'confiteria', 'panificados'],
+      'Carnicería': ['carniceria', 'carne', 'carnes', 'carnicero'],
+      'Verdulería': ['verduleria', 'frutas y verduras', 'verduras', 'frutas', 'fruteria'],
+      'Dietética': ['dietetica', 'productos naturales', 'saludable', 'dietetica'],
+      'Librería y Papelera': ['libreria', 'papelera', 'utiles escolares', 'libros'],
+      'Juguetería': ['jugueteria', 'juguetes'],
+      'Zapatería': ['zapateria', 'calzados', 'zapatillas', 'zapatos'],
+      'Regalería': ['regaleria', 'regalos', 'souvenirs'],
+      'Indumentaria Femenina': ['ropa de mujer', 'ropa femenina', 'indumentaria mujer', 'moda femenina'],
+      'Indumentaria Masculina': ['ropa de hombre', 'ropa masculina', 'camiseria', 'moda masculina'],
+      'Bijouterie y Accesorios': ['bijou', 'accesorios', 'joyas', 'anillos']
+    };
+
+    // DEVUELVE EL/LOS RUBRO(S) OFICIAL(ES) EQUIVALENTES A UNA PALABRA BUSCADA
+    // (busca en el nombre del rubro y en sus sinónimos, con tolerancia a singular/plural)
+    function synonymTermsFor(token) {
+      const tok = normalizeText(token || '');
+      if (!tok || tok.length < 3) return [];
+      const terms = [];
+      Object.keys(TRADE_SYNONYMS).forEach(trade => {
+        const tn = normalizeText(trade);
+        const words = tn.split(' ').concat(TRADE_SYNONYMS[trade].map(normalizeText).join(' ').split(' '));
+        const matched = tn === tok || words.includes(tok) ||
+          (tok.length >= 4 && words.some(w => w.length >= 4 && (w.startsWith(tok) || tok.startsWith(w))));
+        if (matched) terms.push(tn);
+      });
+      return terms;
+    }
+
+    // PALABRAS GENÉRICAS QUE NO DEBEN DISPARAR UNA COINCIDENCIA POR SINÓNIMO
+    // (evita que "abogacía" sugiera Contador solo porque ambos rubros dicen "estudio")
+    const SYNONYM_STOPWORDS = ['y', 'de', 'del', 'la', 'el', 'los', 'las', 'para', 'con', 'un', 'una', 'tu', 'su', 'estudio', 'estudios', 'casa', 'casas', 'otro', 'otros', 'rubro', 'rubros', 'servicio', 'servicios', 'venta', 'trabajos', 'arreglos', 'escribí', 'escribi', 'cuál', 'cual', '24hs'];
+    function altWordHits(alt, words) {
+      return alt.split(' ').some(w => w.length > 3 && !SYNONYM_STOPWORDS.includes(w) && words.some(sw => sw.startsWith(w)));
+    }
+
     // LISTADO OFICIAL COMPLETO DE LOS 48 BARRIOS DE CABA EN ORDEN ALFABÉTICO
     const CABA_48_BARRIOS = [
       'Agronomía', 'Almagro', 'Balvanera', 'Barracas', 'Belgrano', 'Boedo', 'Caballito', 'Chacarita',
@@ -1458,7 +1693,7 @@
       },
       {
         id: 'sp-6',
-        img: 'img/sponsor-pintureria-rex.jpg',
+        img: 'img/sponsor-pintureria.jpg',
         name: 'Pinturería La Paleta',
         category: 'Comercios y Materiales',
         zone: 'Capital Federal',
@@ -2844,6 +3079,7 @@
 
     // DETECTA SI UNA BÚSQUEDA SIN RESULTADOS COINCIDE CON UN RUBRO DEL CATÁLOGO
     // (ej: "odontólogo" o "dentista") para explicar al vecino que el rubro existe pero aún no tiene fichas.
+    // AHORA TAMBIÉN RECONOCE SINÓNIMOS: "dentista" → Odontología y Dentista, "abogacía" → Abogado y Estudio Jurídico.
     function matchCatalogTrades(query) {
       const norm = normalizeText(query || '');
       if (!norm) return [];
@@ -2855,7 +3091,9 @@
           const tw = tn.split(' ');
           const ok = tokens.every(tok => {
             const stem = tok.length > 4 ? tok.replace(/s$/, '') : tok;
-            return tn.includes(tok) || (stem.length > 3 && tw.some(w => w.startsWith(stem)));
+            const direct = tn.includes(tok) || (stem.length > 3 && tw.some(w => w.startsWith(stem)));
+            if (direct) return true;
+            return synonymTermsFor(tok).some(alt => tn.includes(alt) || altWordHits(alt, tw));
           });
           if (ok) hits.push(trade);
         });
@@ -2904,7 +3142,7 @@
         if (onlyUrgencias && !pro.urgencias24) return false;
         if (onlyFavorites && !favoriteIds.has(pro.id)) return false;
 
-        // BÚSQUEDA DIRECTA COMPLETA (tolerante a plurales y palabras incompletas)
+        // BÚSQUEDA DIRECTA COMPLETA (tolerante a plurales, palabras incompletas y SINÓNIMOS de cada rubro)
         if (queryTokens.length) {
           const searchable = normalizeText(
             `${pro.oficio} ${pro.category} ${pro.name} ${pro.ownerName || ''} ${pro.zone} ${pro.address || ''} ${pro.neighborhoods ? pro.neighborhoods.join(' ') : ''} ${pro.specialty || ''} ${pro.reviewQuote || ''}`
@@ -2912,8 +3150,13 @@
           const searchableWords = searchable.split(' ');
           for (const token of queryTokens) {
             const stem = token.length > 4 ? token.replace(/s$/, '') : token;
-            const hit = searchable.includes(token) ||
+            let hit = searchable.includes(token) ||
               (stem.length > 3 && searchableWords.some(w => w.startsWith(stem)));
+            if (!hit) {
+              // SINÓNIMOS: "abogacía", "dentista", "consultoría legal", "groomer", etc.
+              // conectan con el rubro oficial del catálogo aunque la ficha use otra palabra.
+              hit = synonymTermsFor(token).some(alt => searchable.includes(alt) || altWordHits(alt, searchableWords));
+            }
             if (!hit) return false;
           }
         }
@@ -2977,6 +3220,7 @@
       heroSearchInput.value = '';
       filterText.value = '';
       applyFilters(true);
+      hideSuggestBoxes();
       filterText.focus();
     }
 
@@ -3034,25 +3278,41 @@
       e.preventDefault();
       filterText.value = heroSearchInput.value;
       applyFilters(true);
-      document.getElementById('directorio').scrollIntoView({ behavior: 'smooth' });
+      hideSuggestBoxes();
+      scrollToResults(); // BAJA HASTA LOS RESULTADOS (no hasta el segundo buscador)
     });
 
     heroSearchInput.addEventListener('input', () => {
       filterText.value = heroSearchInput.value;
       applyFilters(true);
+      renderSuggestState('hero', heroSearchInput.value);
     });
 
     filterText.addEventListener('input', () => {
       heroSearchInput.value = filterText.value;
       applyFilters(true);
+      renderSuggestState('dir', filterText.value);
     });
 
     // ENTER EN EL BUSCADOR DEL DIRECTORIO: BAJA HASTA LAS TARJETAS DE RESULTADOS
     filterText.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
+        hideSuggestBoxes();
         scrollToResults();
       }
+    });
+
+    // ESCAPE CIERRA LAS SUGERENCIAS DEL AUTOCOMPLETADO
+    [heroSearchInput, filterText].forEach(inp => inp.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideSuggestBoxes();
+    }));
+
+    // CLIC FUERA CIERRA LAS SUGERENCIAS DEL AUTOCOMPLETADO
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#heroSuggestBox') || e.target.closest('#dirSuggestBox')) return;
+      if (e.target === heroSearchInput || e.target === filterText) return;
+      hideSuggestBoxes();
     });
 
     function scrollToResults() {
@@ -3217,51 +3477,150 @@
       checkLegalTermsAcceptance();
     }
 
-    // CONTADOR DE VISITAS (AGREGADO Y ANÓNIMO): valor local + doble servicio online
-    // 1) Abacus (JSON) · 2) hits.sh (SVG, respaldo). Solo incrementa en producción.
+    // CONTADOR DE VISITAS PRIVADO (SOLO PARA EL ADMINISTRADOR)
+    // · Cuenta 1 visita por dispositivo: visitante único real, sin números agregados.
+    // · NO se muestra al público: el administrador la consulta con 5 toques sobre
+    //   "© 2026 OficiosAR" en el pie de página + PIN secreto.
     const VISITS_API = 'https://abacus.jasoncameron.dev';
     const VISITS_NAMESPACE = 'oficiosar-ariwolf1969';
-    const HITS_SH_KEY = 'ariwolf1969-sys.github.io/OficiosAR';
-    async function initVisitCounter() {
-      const el = document.getElementById('visitCounterChip');
-      if (!el) return;
-      const fmt = (n) => n.toLocaleString('es-AR');
-      const show = (n) => {
-        if (n > 0) {
-          localStorage.setItem('oficiosar_last_visits', String(n));
-          el.textContent = `👁 Visitas: ${fmt(n)}`;
-          el.classList.remove('hidden');
-        }
+    const ADMIN_PIN = '1969';
+    function initVisitCounter() {
+      let counted = false;
+      try { counted = localStorage.getItem('oficiosar_unique_counted') === '1'; } catch (err) {}
+      if (counted) return; // este dispositivo ya contó: 1 visita por equipo
+      if (!location.hostname.endsWith('ariwolf1969-sys.github.io')) return; // solo cuenta en producción
+      try { localStorage.setItem('oficiosar_unique_counted', '1'); } catch (err) {}
+      try {
+        fetch(`${VISITS_API}/hit/${VISITS_NAMESPACE}/visitas`, { mode: 'no-cors', cache: 'no-store' }).catch(() => {});
+      } catch (err) { /* silencioso */ }
+    }
+    // PANEL SECRETO DEL ADMINISTRADOR: 5 toques sobre el copyright + PIN
+    let adminTapCount = 0, adminTapTimer = null;
+    function adminSecretTap() {
+      adminTapCount++;
+      clearTimeout(adminTapTimer);
+      adminTapTimer = setTimeout(() => { adminTapCount = 0; }, 2500);
+      if (adminTapCount >= 5) {
+        adminTapCount = 0;
+        const pin = prompt('Panel privado del administrador\nIngresá tu PIN:');
+        if (pin === null) return;
+        if (pin !== ADMIN_PIN) { alert('PIN incorrecto.'); return; }
+        fetch(`${VISITS_API}/get/${VISITS_NAMESPACE}/visitas`, { cache: 'no-store' })
+          .then(r => r.json())
+          .then(d => alert(`👁 Visitas únicas reales: ${(d && d.value) || 0}\n\n• Un dispositivo = 1 visita (aunque vuelva a entrar).\n• Sin números agregados artificialmente.\n• Visible solo para vos (PIN privado).`))
+          .catch(() => alert('No pude conectar con el contador. Probá de nuevo en unos segundos.'));
+      }
+    }
+
+    // ══ AUTOCOMPLETADO ALFABÉTICO DE RUBROS (con sinónimos) ══
+    // Aparece mientras la gente escribe en cualquiera de los dos buscadores:
+    // lista ordenada alfabéticamente y scrolleable que conecta apodos y
+    // sinónimos con el rubro oficial del catálogo.
+    const SUGGEST_STATE = { hero: [], dir: [] };
+    function hideSuggestBoxes() {
+      const a = document.getElementById('heroSuggestBox');
+      const b = document.getElementById('dirSuggestBox');
+      if (a) a.classList.add('hidden');
+      if (b) b.classList.add('hidden');
+    }
+    function buildTradeSuggestions(query) {
+      const norm = normalizeText(query || '');
+      if (!norm || norm.length < 2) return [];
+      const tokens = norm.split(' ').filter(Boolean);
+      const results = [];
+      MASTER_CATALOG.forEach(cat => {
+        cat.trades.forEach(trade => {
+          const tn = normalizeText(trade);
+          const tw = tn.split(' ');
+          const aliases = [tn].concat((TRADE_SYNONYMS[trade] || []).map(normalizeText));
+          const ok = tokens.every(tok => {
+            const stem = tok.length > 4 ? tok.replace(/s$/, '') : tok;
+            const direct = aliases.some(a => a.includes(tok) || (stem.length > 3 && a.split(' ').some(w => w.startsWith(stem))));
+            if (direct) return true;
+            return synonymTermsFor(tok).some(alt => tn.includes(alt) || altWordHits(alt, tw));
+          });
+          if (ok) results.push(trade);
+        });
+      });
+      return results.sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+    }
+    function renderSuggestState(which, query) {
+      const boxId = which === 'hero' ? 'heroSuggestBox' : 'dirSuggestBox';
+      const box = document.getElementById(boxId);
+      if (!box) return;
+      const trades = buildTradeSuggestions(query);
+      SUGGEST_STATE[which] = trades;
+      if (!trades.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+      box.innerHTML = trades.map((trade, idx) => `
+        <button type="button" onclick="pickSuggestion('${which}', ${idx})" class="w-full text-left px-4 py-2.5 hover:bg-blue-50 text-sm text-slate-800 font-medium border-b border-slate-100 transition flex items-center gap-2">
+          <span>🔍</span><span>${escapeHtml(trade)}</span>
+        </button>
+      `).join('') + `<div class="px-4 py-2 text-[11px] text-slate-400 bg-slate-50 border-t border-slate-100">${trades.length} rubro${trades.length === 1 ? '' : 's'} (orden alfabético) · Enter = buscar todo</div>`;
+      box.classList.remove('hidden');
+    }
+    function pickSuggestion(which, idx) {
+      const trade = SUGGEST_STATE[which][idx];
+      if (!trade) return;
+      hideSuggestBoxes();
+      filterText.value = trade;
+      heroSearchInput.value = trade;
+      applyFilters(true);
+      scrollToResults();
+    }
+
+    // ══ MODAL DE SUGERENCIAS DE USUARIOS ("Dejá tu sugerencia aquí") ══
+    // Cuando actives el backend de Google Apps Script, pegá su URL en
+    // SUGGESTIONS_ENDPOINT (termina en /exec). Mientras esté vacío, cada
+    // sugerencia llega por WhatsApp, así ninguna se pierde.
+    const SUGGESTIONS_ENDPOINT = '';
+    function openSuggestionModal() {
+      document.getElementById('sugSuccess').classList.add('hidden');
+      document.getElementById('suggestionModal').classList.remove('hidden');
+    }
+    function closeSuggestionModal() {
+      document.getElementById('suggestionModal').classList.add('hidden');
+    }
+    function collectSuggestion() {
+      return {
+        tipo: document.getElementById('sugTipo').value,
+        rubro: document.getElementById('sugRubro').value.trim(),
+        mensaje: document.getElementById('sugMensaje').value.trim(),
+        contacto: document.getElementById('sugContacto').value.trim()
       };
-      show(parseInt(localStorage.getItem('oficiosar_last_visits') || '0', 10));
-      if (!location.hostname.endsWith('ariwolf1969-sys.github.io')) return;
-      const fetchT = async (url, ms) => {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), ms);
+    }
+    function sendSuggestion() {
+      const s = collectSuggestion();
+      if (!s.mensaje) { alert('Escribinos tu sugerencia antes de enviar 🙂'); return; }
+      if (SUGGESTIONS_ENDPOINT) {
         try {
-          return await fetch(url, { cache: 'no-store', signal: controller.signal });
-        } finally {
-          clearTimeout(timeoutId);
-        }
-      };
-      try {
-        const response = await fetchT(`${VISITS_API}/hit/${VISITS_NAMESPACE}/visitas`, 6000);
-        if (response.ok) {
-          const data = await response.json();
-          if (data && typeof data.value === 'number') {
-            show(data.value);
-            return;
-          }
-        }
-      } catch (err) { /* pasa al plan B */ }
-      try {
-        const response = await fetchT(`https://hits.sh/${HITS_SH_KEY}/hits.svg`, 8000);
-        if (response.ok) {
-          const svg = await response.text();
-          const match = svg.match(/hits:\s*([\d.,]+)/i);
-          if (match) show(parseInt(match[1].replace(/[.,]/g, ''), 10));
-        }
-      } catch (err) { /* queda el último valor guardado en el dispositivo */ }
+          fetch(SUGGESTIONS_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ type: 'suggestion', ...s, fecha: new Date().toISOString() })
+          }).catch(() => {});
+          document.getElementById('sugSuccess').classList.remove('hidden');
+          document.getElementById('sugMensaje').value = '';
+          document.getElementById('sugRubro').value = '';
+          setTimeout(closeSuggestionModal, 1500);
+          return;
+        } catch (err) { /* si falla, cae al WhatsApp */ }
+      }
+      sendSuggestionWhatsApp();
+    }
+    function sendSuggestionWhatsApp() {
+      const s = collectSuggestion();
+      if (!s.mensaje) { alert('Escribinos tu sugerencia antes de enviar 🙂'); return; }
+      const lineas = [
+        '💡 Sugerencia para OficiosAR',
+        '',
+        '• Tipo: ' + s.tipo,
+        s.rubro ? '• Rubro sugerido: ' + s.rubro : '',
+        '• Detalle: ' + s.mensaje,
+        s.contacto ? '• Mi contacto: ' + s.contacto : ''
+      ].filter(Boolean).join('\n');
+      window.open('https://wa.me/5491155976414?text=' + encodeURIComponent(lineas), '_blank');
+      closeSuggestionModal();
     }
 
     // INICIALIZACIÓN

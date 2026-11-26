@@ -47,7 +47,7 @@ const IMAGE_URLS = [
   './img/sponsor-corralon-belgrano.jpg',
   './img/sponsor-electricidad-si.jpg',
   './img/sponsor-bulonera.jpg',
-  './img/sponsor-pintureria-rex.jpg'
+  './img/sponsor-pintureria.jpg'
 ];
 
 self.addEventListener('install', (event) => {
