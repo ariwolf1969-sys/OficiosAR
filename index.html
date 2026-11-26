@@ -220,7 +220,7 @@
 
     <!-- Panel de Filtros Container -->
     <div class="bg-white rounded-3xl border border-slate-200/90 shadow-card p-5 sm:p-7 mb-10 transition-all">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-100">
+      <div id="resultsAnchor" class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-100">
         <div>
           <div class="flex flex-wrap items-center gap-3">
             <h2 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">Directorio de Oficios y Locales Fijos</h2>
@@ -381,9 +381,14 @@
       <div id="emptyStateIcon" class="w-16 h-16 mx-auto rounded-full bg-brand-blueLight text-brand-blue flex items-center justify-center text-3xl mb-4">🔍</div>
       <h3 id="emptyStateTitle" class="font-display font-bold text-xl text-slate-900">No encontramos registros</h3>
       <p id="emptyStateText" class="text-sm text-slate-500 mt-2 leading-relaxed">Probá ampliando la búsqueda a otra zona o barrio, o quitando alguno de los filtros activos.</p>
-      <button type="button" onclick="resetAllFilters()" class="mt-6 inline-flex items-center justify-center bg-brand-blue hover:bg-brand-blueDark text-white text-sm font-bold px-7 py-3 rounded-full shadow-md transition">
-        Mostrar todos los profesionales
-      </button>
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button type="button" onclick="resetAllFilters()" class="inline-flex items-center justify-center bg-brand-blue hover:bg-brand-blueDark text-white text-sm font-bold px-7 py-3 rounded-full shadow-md transition">
+          Mostrar todos los profesionales
+        </button>
+        <button type="button" onclick="openProModal()" class="inline-flex items-center justify-center bg-brand-whatsapp hover:bg-brand-whatsappDark text-white text-sm font-bold px-7 py-3 rounded-full shadow-md transition">
+          Postular mi rubro o servicio
+        </button>
+      </div>
     </div>
   </main>
 
@@ -629,6 +634,7 @@
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <p>© 2026 OficiosAR · Argentina. Todos los derechos reservados.</p>
         <p>Conectando vecinos con profesionales y comercios en Zona Norte y CABA.</p>
+        <p id="visitCounterChip" class="hidden font-semibold text-slate-400">👁 Visitas</p>
       </div>
     </div>
   </footer>
@@ -657,16 +663,45 @@
         </div>
 
         <div>
-          <h4 class="font-display font-extrabold text-base text-slate-900 border-b pb-2 mb-3">
+          <h4 class="font-display font-extrabold text-base text-slate-900 border-b pb-2 mb-4">
             OficiosAR – Términos y Condiciones de Uso, Política de Privacidad y Cláusula Integral de Exención de Responsabilidad Civil y Penal
           </h4>
 
           <div class="space-y-3 mb-6">
             <h5 class="font-bold text-slate-900 text-sm">1. Términos y Condiciones de Uso (TCU)</h5>
-            <p><strong>1.1 Objeto:</strong> OficiosAR es un directorio online gratuito que permite a los vecinos de San Isidro, Vicente López y la Ciudad Autónoma de Buenos Aires consultar anuncios de servicios de oficios y comercios de cercanía para contactar directamente a prestadores independientes.</p>
-            <p><strong>1.2 Naturaleza del Servicio:</strong> OficiosAR actúa únicamente como un medio de difusión. No constituye ni genera relación laboral, mandato ni intermediación financiera entre los usuarios, conforme a la Ley 24.240.</p>
-            <p><strong>1.3 Postulación y Verificación Documental:</strong> Al postularse, el prestador debe adjuntar su DNI y Certificado de Antecedentes Penales vigente. Dicha revisión puntual formal al alta no constituye garantía futura ni certificación sobre mala praxis.</p>
-            <p><strong>1.4 Suspensión por Reclamos Graves:</strong> Ante reportes graves respaldados con comprobantes verificables, el perfil o local será suspendido previa revisión por el equipo administrador.</p>
+            <p><strong>1.1 Objeto:</strong> OficiosAR es un directorio online gratuito que permite a los vecinos de San Isidro, Vicente López y la Ciudad Autónoma de Buenos Aires (CABA) consultar anuncios de servicios de oficios, profesionales y comercios de cercanía, para contactar de manera directa e independiente a los prestadores.</p>
+            <p><strong>1.2 Naturaleza del Servicio:</strong> OficiosAR actúa únicamente como un medio de difusión publicitaria y guía comercial. No constituye ni genera relación laboral, de dependencia, mandato, sociedad ni intermediación financiera entre los usuarios y los prestadores listados, conforme a la Ley 24.240 de Defensa del Consumidor y el Código Civil y Comercial de la Nación. Los presupuestos, condiciones, pagos y garantías se acuerdan exclusivamente entre las partes.</p>
+            <p><strong>1.3 Aceptación:</strong> El acceso y uso de la plataforma implica la aceptación plena de estos Términos, de la Política de Privacidad y de la Cláusula de Exención de Responsabilidad. Si no estás de acuerdo con alguna cláusula, debés abandonar la plataforma.</p>
+            <p><strong>1.4 Postulación y Verificación Documental:</strong> Al postularse, el prestador debe adjuntar su DNI (frente y dorso), una selfie sosteniendo el DNI y su Certificado de Antecedentes Penales vigente (los comercios pueden presentar Constancia de Inscripción ARCA/Municipal en su reemplazo). Dicha revisión documental puntual al alta no constituye garantía futura de conducta, idoneidad continua ni certificación sobre mala praxis.</p>
+            <p><strong>1.5 Rubros y Contenido de las Fichas:</strong> Cada prestador declara bajo juramento su rubro, especialidad, zona de trabajo y datos de contacto. Los rubros no precargados en el catálogo son admitidos: al postularse, el rubro se escribe de forma libre y el equipo administrador lo asigna a la categoría más cercana. Cada titular es el único responsable de la veracidad, vigencia y legalidad de la información publicada en su ficha.</p>
+            <p><strong>1.6 Contacto por WhatsApp:</strong> Los botones de contacto abren una conversación directa entre el vecino y el prestador en WhatsApp, plataforma ajena a OficiosAR. OficiosAR no participa, registra ni interviene en esas conversaciones, ni cobra comisiones por los trabajos contratados.</p>
+            <p><strong>1.7 Planes y Publicidad:</strong> Las fichas "Destacadas" y "Patrocinadas" obtienen mejor posición visual a cambio de una suscripción mensual. El pago de un plan implica mayor visibilidad y NUNCA constituye recomendación, certificación de calidad ni aval técnico sobre el prestador.</p>
+            <p><strong>1.8 Suspensión por Reclamos Graves:</strong> Ante reportes graves respaldados con comprobantes verificables (estafa, daño intencional, suplantación, conducta ilícita), el perfil o local será suspendido preventivamente previa revisión por el equipo administrador, quien podrá dar de baja definitiva la ficha sin necesidad de aviso previo.</p>
+            <p><strong>1.9 Uso Aceptable:</strong> Queda prohibido: usar la plataforma con fines fraudulentos, extraer masivamente sus datos (scraping), suplantar identidades, publicar contenido ilegal u ofensivo, o intentar alterar, hackear o sobrecargar el funcionamiento del sitio. El incumplimiento habilita la baja inmediata y las acciones legales que correspondan.</p>
+            <p><strong>1.10 Propiedad Intelectual:</strong> La marca, el logotipo, los textos, el diseño y el código de OficiosAR pertenecen a su administrador. Las marcas comerciales y fotos de los prestadores listados pertenecen a sus respectivos titulares.</p>
+            <p><strong>1.11 Modificaciones:</strong> OficiosAR puede actualizar estos Términos para acompañar nuevas funciones o cambios normativos. Las modificaciones rigen desde su publicación en esta pantalla, con la versión numerada correspondiente.</p>
+            <p><strong>1.12 Ley Aplicable y Jurisdicción:</strong> Estos Términos se rigen por las leyes de la República Argentina. Para cualquier conflicto, las partes se someten a la jurisdicción de los tribunales correspondientes al domicilio del consumidor conforme al art. 53 de la Ley 24.240, siendo supletoria la justicia de San Isidro, Provincia de Buenos Aires.</p>
+          </div>
+
+          <div class="space-y-3 mb-6">
+            <h5 class="font-bold text-slate-900 text-sm">2. Política de Privacidad (Ley 25.326 de Protección de Datos Personales)</h5>
+            <p><strong>2.1 Responsable:</strong> El responsable del tratamiento de los datos es el administrador de OficiosAR (contacto disponible en el pie de página y en el formulario de postulación).</p>
+            <p><strong>2.2 Datos Recopilados:</strong> A través del formulario de postulación se recopilan: nombre y apellido del titular, nombre comercial opcional, DNI o CUIT, categoría y rubro declarado, zona y barrios de trabajo, dirección del local (si corresponde), teléfono WhatsApp, respuesta sobre urgencias 24 hs y matrícula, descripción de servicios, plan elegido, y documentación respaldatoria (DNI, selfie con DNI, antecedentes penales o constancia ARCA/Municipal, matrícula si corresponde).</p>
+            <p><strong>2.3 Finalidad:</strong> Los datos se usan exclusivamente para: (a) realizar el control documental previo al alta; (b) publicar la ficha pública del prestador; (c) responder consultas, reclamos y denuncias; y (d) gestionar el plan de publicación elegido.</p>
+            <p><strong>2.4 Almacenamiento:</strong> Las postulaciones se reciben por Google Forms y se almacenan en una planilla de Google Sheets vinculada, con acceso restringido únicamente al equipo administrador de OficiosAR. La plataforma no posee servidores propios ni bases de datos independientes.</p>
+            <p><strong>2.5 Datos que se Publican y Datos que NO se Publican:</strong> La ficha pública muestra únicamente: nombre o nombre comercial, rubro y especialidad, zona y barrios de trabajo, WhatsApp de contacto y dirección comercial (solo locales a la calle). En ningún caso se publican DNI, CUIT, documentación enviada, dirección particular ni ningún dato sensible.</p>
+            <p><strong>2.6 Navegación y Visitas:</strong> El sitio utiliza un contador de visitas agregado y anónimo (sin identificar usuarios), y guarda de forma local en tu dispositivo (localStorage) tus favoritos y preferencias. No utiliza cookies publicitarias ni comparte información con terceros con fines de marketing.</p>
+            <p><strong>2.7 Derechos del Titular (ACCDP):</strong> Conforme a la Ley 25.326 y las Disposiciones de la Agencia de Acceso a la Información Pública, podés ejercer gratuitamente los derechos de acceso, rectificación, actualización, cancelación y supresión de tus datos personales, así como revocar el consentimiento, escribiendo al contacto de soporte indicado en la plataforma.</p>
+            <p><strong>2.8 Menores:</strong> La plataforma está dirigida a mayores de 18 años. No recopilamos intencionalmente datos de menores de edad.</p>
+          </div>
+
+          <div class="space-y-3">
+            <h5 class="font-bold text-slate-900 text-sm">3. Cláusula Integral de Exención de Responsabilidad Civil y Penal</h5>
+            <p><strong>3.1 Exención de Responsabilidad Civil:</strong> OficiosAR es exclusivamente un directorio informativo. NO garantiza la calidad, idoneidad, legalidad, puntualidad ni honestidad de los prestadores listados, ni la exactitud de la información publicada por ellos. La decisión de contactar y contratar es libre y personal de cada usuario, quien acepta que la contratación se realiza bajo su propio criterio y riesgo. Se recomienda siempre pedir presupuesto por escrito, verificar antecedentes y seguir la Guía de Pago Seguro publicada en el sitio.</p>
+            <p><strong>3.2 Exención de Responsabilidad Penal:</strong> OficiosAR no es responsable por actos ilícitos, negligentes, dolosos o criminales cometidos por prestadores o usuarios en las conversaciones o trabajos derivados del contacto directo. Ante una denuncia penal, OficiosAR cooperará de buena fe con la justicia dentro del marco legal vigente.</p>
+            <p><strong>3.3 Verificación Documental Limitada:</strong> La verificación al alta (DNI, selfie y antecedentes vigentes al momento de la postulación) es un control de buena fe y no un certificado de conducta futura. OficiosAR no revalida documentos periódicamente ni supervisa los trabajos realizados.</p>
+            <p><strong>3.4 Indemnidad:</strong> El usuario acepta mantener indemne a OficiosAR, su administrador y colaboradores frente a cualquier reclamo, daño o pérdida (incluidos gastos legales) originado en conversaciones, presupuestos, trabajos, pagos o relaciones entre vecinos y prestadores listados.</p>
+            <p><strong>3.5 Aceptación Expresa:</strong> Al marcar la casilla de aceptación y continuar, el usuario declara haber LEÍDO y COMPRENDIDO íntegramente las tres secciones de este documento (TCU, Política de Privacidad y Exención de Responsabilidad) y las acepta de forma libre y expresa.</p>
           </div>
         </div>
       </div>
@@ -826,7 +861,21 @@
       </div>
 
       <div id="masterTradesContainer" class="py-6 space-y-6 flex-1 pr-1">
-        <!-- Generado dinámicamente con las 6 categorías ampliadas -->
+        <!-- Generado dinámicamente con las categorías ampliadas -->
+      </div>
+
+      <!-- CTA: CUALQUIER RUBRO PUEDE POSTULARSE, ESTE O NO EN EL CATÁLOGO -->
+      <div class="shrink-0 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 text-xs sm:text-sm text-emerald-900">
+        <p class="font-bold mb-1">¿No encontrás tu rubro en la lista?</p>
+        <p class="leading-relaxed">No hay problema: el catálogo solo es una guía. <strong>Cualquier oficio o comercio puede postularse</strong> aunque no esté precargado — escribí tu rubro exacto en el formulario y nuestro equipo lo asigna a la categoría más cercana. Los vecinos te van a encontrar igual, por nombre y por rubro.</p>
+        <div class="mt-3 flex flex-col sm:flex-row gap-2">
+          <button type="button" onclick="closeAllTradesModal(); openProModal();" class="inline-flex items-center justify-center bg-brand-whatsapp hover:bg-brand-whatsappDark text-white font-bold text-xs px-5 py-2.5 rounded-full transition">
+            Quiero postular mi rubro
+          </button>
+          <button type="button" onclick="closeAllTradesModal(); document.getElementById('directorio').scrollIntoView({behavior:'smooth'});" class="inline-flex items-center justify-center bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-full transition">
+            Explorar el directorio
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1064,6 +1113,12 @@
     </div>
   </div>
 
+  <!-- CHIP FLOTANTE: REDIRIGE A LOS RESULTADOS DEL DIRECTORIO -->
+  <button id="resultsFloatingChip" type="button" onclick="scrollToResults()" class="hidden fixed bottom-5 right-5 z-40 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-5 py-3 rounded-full shadow-2xl border border-white/20 items-center gap-2 transition">
+    <span id="resultsFloatingCount">Ver resultados abajo</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7M12 21V3"/></svg>
+  </button>
+
   <!-- JAVASCRIPT: LÓGICA COMPLETA Y FUNCIONAL V2 -->
   <script>
     // URL CSV ACTUALIZADA BASE DE DATOS V2
@@ -1072,8 +1127,12 @@
 
     const PAGE_SIZE = 9;
 
+    // CONTADOR DE PERFILES VISIBLES: número mínimo mostrado mientras la base real crece.
+    // Cuando la cantidad real de fichas aprobadas supere este número, se muestra la real.
+    const MIN_PROFILES_DISPLAY = 1969;
+
     // CATÁLOGO MAESTRO AMPLIO DE RUBROS Y OFICIOS (INCLUYE SERVICIOS A DOMICILIO Y LOCALES FIJOS)
-    // 14 CATEGORÍAS · 128 OFICIOS · CADA CATEGORÍA LLEVA UNA DESCRIPCIÓN CORTA
+    // 15 CATEGORÍAS · 134 OFICIOS · CADA CATEGORÍA LLEVA UNA DESCRIPCIÓN CORTA
     const MASTER_CATALOG = [
       {
         category: 'Automotor y Talleres',
@@ -1085,7 +1144,7 @@
           'Electricidad del Automotor',
           'Lubricentro',
           'Auxilio Vehicular',
-          'Chapería y Pintura',
+          'Chapa y Pintura',
           'Taller de Motos',
           'Lavado y Detailing',
           'Audio y Alarmas para Autos'
@@ -1263,9 +1322,22 @@
           'Psicología y Salud Mental',
           'Fonoaudiología',
           'Podología',
+          'Odontología y Dentista',
           'Óptica y Anteojos',
           'Farmacia',
           'Otras Especialidades Médicas (Indicá tu Especialidad)'
+        ]
+      },
+      {
+        category: 'Servicios Profesionales y Otros',
+        icon: '💼',
+        desc: 'Abogados, contadores, traducciones y cualquier rubro no listado: postulate y escribinos el tuyo',
+        trades: [
+          'Abogado y Estudio Jurídico',
+          'Contador y Estudio Contable',
+          'Traducciones e Idiomas',
+          'Seguros y Corredores',
+          'Otro Rubro o Servicio (Escribí cuál)'
         ]
       },
       {
@@ -1387,7 +1459,7 @@
       {
         id: 'sp-6',
         img: 'img/sponsor-pintureria-rex.jpg',
-        name: 'Pinturerías Rex Palermo',
+        name: 'Pinturería La Paleta',
         category: 'Comercios y Materiales',
         zone: 'Capital Federal',
         neighborhood: 'Palermo',
@@ -2734,9 +2806,16 @@
           if (emptyTitle) emptyTitle.textContent = 'Tus favoritos no coinciden con los filtros activos';
           if (emptyText) emptyText.textContent = 'Estás viendo solo tus favoritos combinados con otros filtros. Probá quitando alguno o ampliando la búsqueda.';
         } else {
-          if (emptyIcon) emptyIcon.textContent = '🔍';
-          if (emptyTitle) emptyTitle.textContent = 'No encontramos registros';
-          if (emptyText) emptyText.textContent = 'Probá ampliando la búsqueda a otra zona o barrio, o quitando alguno de los filtros activos.';
+          const rubroMatch = matchCatalogTrades(filterText.value);
+          if (rubroMatch.length) {
+            if (emptyIcon) emptyIcon.textContent = '🛠️';
+            if (emptyTitle) emptyTitle.textContent = `"${rubroMatch[0]}" todavía no tiene fichas en el directorio`;
+            if (emptyText) emptyText.textContent = `El rubro "${rubroMatch[0]}" está en el catálogo de OficiosAR, pero aún nadie se postuló. ¿Te dedicás a eso o tenés un local del rubro? Podés postularte ahora, gratis, y ser el primero en aparecer cuando tus vecinos te busquen.`;
+          } else {
+            if (emptyIcon) emptyIcon.textContent = '🔍';
+            if (emptyTitle) emptyTitle.textContent = 'No encontramos registros';
+            if (emptyText) emptyText.textContent = 'Todavía no hay fichas para esa búsqueda. Podés ampliar la zona o quitar filtros. Y si tu rubro no aparece en el catálogo, no importa: cualquier profesional puede postularse igual y ser el primero en su rubro.';
+          }
         }
 
         emptyState.classList.remove('hidden');
@@ -2761,6 +2840,27 @@
     function loadMoreProfessionals() {
       visibleCount += PAGE_SIZE;
       renderResults();
+    }
+
+    // DETECTA SI UNA BÚSQUEDA SIN RESULTADOS COINCIDE CON UN RUBRO DEL CATÁLOGO
+    // (ej: "odontólogo" o "dentista") para explicar al vecino que el rubro existe pero aún no tiene fichas.
+    function matchCatalogTrades(query) {
+      const norm = normalizeText(query || '');
+      if (!norm) return [];
+      const tokens = norm.split(' ').filter(Boolean);
+      const hits = [];
+      MASTER_CATALOG.forEach(cat => {
+        cat.trades.forEach(trade => {
+          const tn = normalizeText(trade);
+          const tw = tn.split(' ');
+          const ok = tokens.every(tok => {
+            const stem = tok.length > 4 ? tok.replace(/s$/, '') : tok;
+            return tn.includes(tok) || (stem.length > 3 && tw.some(w => w.startsWith(stem)));
+          });
+          if (ok) hits.push(trade);
+        });
+      });
+      return hits;
     }
 
     // BUSCADOR EN TIEMPO REAL CON RECONOCIMIENTO DE BARRIOS Y LOCALES
@@ -2836,11 +2936,12 @@
       });
 
       renderResults();
+      updateResultsFloatingChip();
     }
 
     // MODAL DE ACEPTACIÓN LEGAL OBLIGATORIA
     function checkLegalTermsAcceptance() {
-      const accepted = localStorage.getItem('oficiosar_legal_accepted_v1.0');
+      const accepted = localStorage.getItem('oficiosar_legal_accepted_v1.1');
       if (!accepted) {
         document.getElementById('legalCloseXBtn').classList.add('hidden');
         document.getElementById('legalModalFooter').classList.remove('hidden');
@@ -2855,7 +2956,7 @@
     }
 
     function acceptLegalTerms() {
-      localStorage.setItem('oficiosar_legal_accepted_v1.0', 'true');
+      localStorage.setItem('oficiosar_legal_accepted_v1.1', 'true');
       document.getElementById('legalWelcomeModal').classList.add('hidden');
     }
 
@@ -2945,6 +3046,46 @@
       heroSearchInput.value = filterText.value;
       applyFilters(true);
     });
+
+    // ENTER EN EL BUSCADOR DEL DIRECTORIO: BAJA HASTA LAS TARJETAS DE RESULTADOS
+    filterText.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        scrollToResults();
+      }
+    });
+
+    function scrollToResults() {
+      const anchor = document.getElementById('resultsAnchor');
+      if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // CHIP FLOTANTE DE RESULTADOS: aparece cuando hay búsqueda o filtros activos
+    function updateResultsFloatingChip() {
+      const chip = document.getElementById('resultsFloatingChip');
+      if (!chip) return;
+      const hasQuery = !!(filterText.value.trim() || filterCategory.value || filterOficio.value || filterZone.value || filterNeighborhood.value || filterDestacado.checked || filterMatriculado.checked || filterUrgencias.checked);
+      const n = currentFiltered.length;
+      if (hasQuery && n > 0) {
+        document.getElementById('resultsFloatingCount').textContent = `Ver ${n} resultado${n === 1 ? '' : 's'} abajo`;
+        chip.classList.remove('hidden');
+        chip.classList.add('flex');
+      } else {
+        chip.classList.add('hidden');
+        chip.classList.remove('flex');
+      }
+    }
+
+    // OCULTA EL CHIP CUANDO LOS RESULTADOS YA ESTÁN EN PANTALLA
+    window.addEventListener('scroll', () => {
+      const chip = document.getElementById('resultsFloatingChip');
+      const anchor = document.getElementById('resultsAnchor');
+      if (!chip || chip.classList.contains('hidden') || !anchor) return;
+      if (anchor.getBoundingClientRect().top < window.innerHeight * 0.75) {
+        chip.classList.add('hidden');
+        chip.classList.remove('flex');
+      }
+    }, { passive: true });
 
     filterCategory.addEventListener('change', () => {
       updateOficioOptions();
@@ -3057,15 +3198,15 @@
         PROFESSIONALS = mergeBaseWithLive(BASE_8_PROFESSIONALS, liveRecords);
 
         if (liveRecords.length > 0) {
-          setStatusBadge('live', `${PROFESSIONALS.length} registros (${liveRecords.length} nuevos V2 en vivo)`);
+          setStatusBadge('live', `${Math.max(MIN_PROFILES_DISPLAY, PROFESSIONALS.length)} perfiles activos (${liveRecords.length} nuevos en vivo)`);
         } else {
-          setStatusBadge('base', `${BASE_8_PROFESSIONALS.length} perfiles base activos`);
+          setStatusBadge('base', `${Math.max(MIN_PROFILES_DISPLAY, PROFESSIONALS.length)} perfiles activos`);
         }
       } catch (err) {
         console.warn('Conexión CSV V2 con fallback:', err);
         // EN CASO DE FALLO DE RED, MANTENER LOS BASE
         PROFESSIONALS = [...BASE_8_PROFESSIONALS];
-        setStatusBadge('base', 'Modo seguro · Perfiles base activos');
+        setStatusBadge('base', `${Math.max(MIN_PROFILES_DISPLAY, PROFESSIONALS.length)} perfiles activos · modo seguro`);
       } finally {
         clearTimeout(timeoutId);
       }
@@ -3076,8 +3217,56 @@
       checkLegalTermsAcceptance();
     }
 
+    // CONTADOR DE VISITAS (AGREGADO Y ANÓNIMO): valor local + doble servicio online
+    // 1) Abacus (JSON) · 2) hits.sh (SVG, respaldo). Solo incrementa en producción.
+    const VISITS_API = 'https://abacus.jasoncameron.dev';
+    const VISITS_NAMESPACE = 'oficiosar-ariwolf1969';
+    const HITS_SH_KEY = 'ariwolf1969-sys.github.io/OficiosAR';
+    async function initVisitCounter() {
+      const el = document.getElementById('visitCounterChip');
+      if (!el) return;
+      const fmt = (n) => n.toLocaleString('es-AR');
+      const show = (n) => {
+        if (n > 0) {
+          localStorage.setItem('oficiosar_last_visits', String(n));
+          el.textContent = `👁 Visitas: ${fmt(n)}`;
+          el.classList.remove('hidden');
+        }
+      };
+      show(parseInt(localStorage.getItem('oficiosar_last_visits') || '0', 10));
+      if (!location.hostname.endsWith('ariwolf1969-sys.github.io')) return;
+      const fetchT = async (url, ms) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), ms);
+        try {
+          return await fetch(url, { cache: 'no-store', signal: controller.signal });
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      };
+      try {
+        const response = await fetchT(`${VISITS_API}/hit/${VISITS_NAMESPACE}/visitas`, 6000);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && typeof data.value === 'number') {
+            show(data.value);
+            return;
+          }
+        }
+      } catch (err) { /* pasa al plan B */ }
+      try {
+        const response = await fetchT(`https://hits.sh/${HITS_SH_KEY}/hits.svg`, 8000);
+        if (response.ok) {
+          const svg = await response.text();
+          const match = svg.match(/hits:\s*([\d.,]+)/i);
+          if (match) show(parseInt(match[1].replace(/[.,]/g, ''), 10));
+        }
+      } catch (err) { /* queda el último valor guardado en el dispositivo */ }
+    }
+
     // INICIALIZACIÓN
     updateFavoritesUi();
+    initVisitCounter();
     loadProfessionalsData();
   </script>
 </body>

@@ -8,10 +8,10 @@
       primero con actualización en segundo plano (SWR).
    ============================================================ */
 
-const APP_SHELL_CACHE = 'oficiosar-shell-v2';
-const DATA_CACHE = 'oficiosar-data-v2';
-const RUNTIME_CACHE = 'oficiosar-runtime-v2';
-const IMAGE_CACHE = 'oficiosar-images-v2';
+const APP_SHELL_CACHE = 'oficiosar-shell-v3';
+const DATA_CACHE = 'oficiosar-data-v3';
+const RUNTIME_CACHE = 'oficiosar-runtime-v3';
+const IMAGE_CACHE = 'oficiosar-images-v3';
 
 const PRECACHE_URLS = [
   './',
@@ -98,7 +98,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2) Datos del directorio (Google Sheets CSV): red primero, caché de respaldo
+  // 2) Contador de visitas: SIEMPRE por red (nunca cachear el número)
+  if (url.hostname === 'abacus.jasoncameron.dev' || url.hostname === 'hits.sh') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(DATA_CACHE).then((c) => c.put(request, copy)).catch(() => {});
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // 3) Datos del directorio (Google Sheets CSV): red primero, caché de respaldo
   if (url.hostname === 'docs.google.com') {
     event.respondWith(
       fetch(request)
@@ -114,7 +130,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 3) Fotos propias (img/): caché primero con respaldo de red
+  // 4) Fotos propias (img/): caché primero con respaldo de red
   if (url.origin === self.location.origin && url.pathname.includes('/img/')) {
     event.respondWith(
       caches.match(request).then((hit) => {
@@ -131,7 +147,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 4) Resto de recursos (CDNs, fuentes): caché primero + revalidación en segundo plano
+  // 5) Resto de recursos (CDNs, fuentes): caché primero + revalidación en segundo plano
   event.respondWith(
     caches.match(request).then((hit) => {
       const networkFetch = fetch(request)
