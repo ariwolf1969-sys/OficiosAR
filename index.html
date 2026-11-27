@@ -3569,10 +3569,10 @@
     }
 
     // ══ MODAL DE SUGERENCIAS DE USUARIOS ("Dejá tu sugerencia aquí") ══
-    // Cuando actives el backend de Google Apps Script, pegá su URL en
-    // SUGGESTIONS_ENDPOINT (termina en /exec). Mientras esté vacío, cada
-    // sugerencia llega por WhatsApp, así ninguna se pierde.
-    const SUGGESTIONS_ENDPOINT = '';
+    // Backend de Google Apps Script (proyecto aparte, autorizado): cada sugerencia
+    // cae en la pestaña "Sugerencias" de la planilla. Si algún día hay que
+    // desactivarlo, dejá la cadena vacía y el envío vuelve a WhatsApp solo.
+    const SUGGESTIONS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbziJyCxLDFj8byBBt6jTzDQYlpLNDKJ94xTKk_1VSoQd668xtBY95GqzUzQb5Cfr7G6HQ/exec';
     function openSuggestionModal() {
       document.getElementById('sugSuccess').classList.add('hidden');
       document.getElementById('suggestionModal').classList.remove('hidden');
