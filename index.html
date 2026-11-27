@@ -2313,17 +2313,32 @@
       return rows.filter(r => r.some(cell => cell.trim() !== ''));
     }
 
-    // MAPEO EXACTO DE LAS 22 COLUMNAS DEL GOOGLE FORMS CSV V2 (BASE 0)
+    // MAPEO DEL CSV DE GOOGLE FORMS (BASE 0)
+    // Las columnas de contenido (2 a 18) son estables. Las administrativas
+    // (estado / verificado / destacado) se BUSCAN POR NOMBRE de cabecera:
+    // cada vez que el formulario agrega o quita preguntas, esas columnas se
+    // corren (pasaron de T/U/V a V/W/X al agregar las casillas de WhatsApp y T&C).
     // PRIVACIDAD: Jamás se leen ni exponen índices 1 (Email), 5 (DNI/CUIT), 14 (Foto DNI) ni 15 (Antecedentes)
     function mapCSVRowsToProfessionals(rows) {
       if (!rows.length) return [];
 
       const items = [];
+      const header = rows[0] || [];
+      const findColPorNombre = (nombre, fallback) => {
+        for (let c = 0; c < header.length; c++) {
+          if (normalizeText(header[c]) === nombre) return c;
+        }
+        return fallback;
+      };
+      const colEstado = findColPorNombre('estado', 21);
+      const colVerificado = findColPorNombre('verificado', 22);
+      const colDestacado = findColPorNombre('destacado', 23);
+
       const isHeader = rows[0] && (
-        normalizeText(rows[0][0]).includes('marca') ||
-        normalizeText(rows[0][3]).includes('nombre') ||
-        normalizeText(rows[0][19]).includes('estado') ||
-        normalizeText(rows[0][2]).includes('tipo')
+        normalizeText(header[0]).includes('marca') ||
+        normalizeText(header[3]).includes('nombre') ||
+        normalizeText(header[colEstado]) === 'estado' ||
+        normalizeText(header[2]).includes('tipo')
       );
       const startIdx = isHeader ? 1 : 0;
 
@@ -2331,8 +2346,8 @@
         const r = rows[i];
         const getCell = idx => (idx < r.length ? String(r[idx] || '').trim() : '');
 
-        // Índice 19 (Col T): estado (APROBADO / PENDIENTE)
-        const estado = getCell(19);
+        // Columna "estado" (APROBADO / PENDIENTE), ubicada por nombre
+        const estado = getCell(colEstado);
         if (normalizeText(estado) !== 'aprobado') {
           continue; // Solo procesar filas APROBADAS
         }
@@ -2387,11 +2402,11 @@
         // Índice 16 (Col Q): Descripción de servicios y horarios
         const descripcionServicios = getCell(16);
 
-        // Índice 20 (Col U): verificado (SI / NO)
-        const verificado = parseBooleanCell(getCell(20));
+        // Columna "verificado" (SI / NO), ubicada por nombre
+        const verificado = parseBooleanCell(getCell(colVerificado));
 
-        // Índice 21 (Col V): destacado (SI / NO)
-        const destacado = parseBooleanCell(getCell(21));
+        // Columna "destacado" (SI / NO), ubicada por nombre
+        const destacado = parseBooleanCell(getCell(colDestacado));
 
         // ID ESTABLE PARA QUE LOS FAVORITOS SOBREVIVAN A REORDENAMIENTOS DE LA PLANILLA
         const idSlug = normalizeText(`${name} ${oficio}`).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `fila-${i}`;
